@@ -1,0 +1,50 @@
+==========================================================================
+IKI-BATARYA, TOPLAM SOLAR 3.0 (site basina 1.5) - DUZELTILMIS KOSUM
+==========================================================================
+mpc2_test import ediliyor...
+
+KANIT (1) gercek solar site-tepesi: 1.5000  (hedef 1.5)
+KANIT (2) naive fc/gercek orani: 0.986
+KANIT (3) NWP   fc/gercek orani: 1.000
+  -> uc kanit da tuttu.
+
+KONTROLCU KUNYESI:
+  toplam solar tepe : 3.0 MW (site basina 1.5)
+  depolama          : 2 x 6 MWh (tek-batarya senaryosunun 2 kati)
+  dilim             : 13800:16229 | mod: gru (adil) | koordineli
+  kiyas cipasi      : tek-batarya naive %11.28 (ayni toplam solar)
+
+--- gru-koordineli, tahmin=naive kosuluyor...
+    400/2429 ...
+    800/2429 ...
+    1200/2429 ...
+    1600/2429 ...
+    2000/2429 ...
+    2400/2429 ...
+    naive: ihlal 3.09% | adet 75 | doygun 75 | sure 49 dk
+
+--- gru-koordineli, tahmin=NWP kosuluyor...
+    400/2429 ...
+    800/2429 ...
+    1200/2429 ...
+    1600/2429 ...
+    2000/2429 ...
+    2400/2429 ...
+    NWP: ihlal 2.76% | adet 67 | doygun 67 | sure 49 dk
+
+==========================================================================
+SONUC (iki batarya, koordineli, TOPLAM solar 3.0)
+==========================================================================
+    tahmin   ihlal%   adet  doygun
+     naive     3.09     75      75
+       NWP     2.76     67      67
+    tek-batarya naive (cipa)   11.28
+
+ON-KAYITLI HUKUM (<author> onayladi):
+  naive-koordineli %3.09, %2-%8 arasi -> ARA BOLGE.
+  NWP belirleyici: NWP %2.76 < %2 ise
+  'iyi tahmin sartiyla kapali'; degilse hukum yok, ek olcum gerekir.
+
+NOT: dunku 0.41 (solar 1.25 + sisik tahmin) ve bugunku 22.15 (toplam 6.0)
+kosumlari GECERSIZ sayilir; kayitlara 'kunye hatasi' olarak gecer.
+

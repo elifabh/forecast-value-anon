@@ -1,0 +1,44 @@
+
+==============================================================================
+0. KUNYE
+==============================================================================
+pandapower 3.4.0 | numpy 2.3.5 | python 3.13.5
+cvxpy 1.9.1 | numba=True
+
+fider mv_oberrhein | k*=2.859375 | 108 MV bara | batarya bara 147
+P_MAX 8.00 MW | CAP 16.00 MWh | ETA 0.94868 | dt 0.50 | w_econ 1.0 | H 48
+dilim 13800:16229 (2429 adim) | LO 0.95 HI 1.05 MARGIN 0.005
+A7 npz k* tutarliligi -> GECTI
+A8 safe layer <-> VM_BASE: |fark| = 0.000e+00 -> GECTI
+
+==============================================================================
+KOL: PLACEBO  (PLASEBO: NWP matrisi 7 gun geri kaydirilmis)
+==============================================================================
+A9 tahmin matrisi sekli (16230, 48) (bek (16230, 48)) -> GECTI
+  300/2429  (130 adim/dk, kalan ~16.4 dk)
+  600/2429  (137 adim/dk, kalan ~13.4 dk)
+  900/2429  (131 adim/dk, kalan ~11.6 dk)
+  1200/2429  (129 adim/dk, kalan ~9.5 dk)
+  1500/2429  (127 adim/dk, kalan ~7.3 dk)
+  1800/2429  (126 adim/dk, kalan ~5.0 dk)
+  2100/2429  (125 adim/dk, kalan ~2.6 dk)
+  2400/2429  (125 adim/dk, kalan ~0.2 dk)
+
+  ihlal 8.52%  (207 adim; dusuk voltaj 0) | kar 44057.0 EUR
+  saturated 206
+  ihlal ayristirmasi (totoloji degil, IS 3 olcumune karsi):
+    UZAMSAL   (hicbir gucle giderilemez) :   41  (19.8%)
+    SOC/GUC   (o an kapasite yetmedi)    :  166  (80.2%)
+    BEKLENMEDIK                          :    0  (0.0%)
+    ihlalli adimlarda mevcut sarj gucu p_hi: ort 0.10 / P_MAX 8.00 MW
+  SOC ort 7.51 MWh (47% dolu) | yazildi: <repo>\gg2\data\ob8_placebo.npz
+
+==============================================================================
+OZET - mv_oberrhein
+==============================================================================
+kontrolsuz (batarya yok, IS 2): 15.11%
+
+kol      ihlal%    kar EUR     uzamsal   SOC/guc   solar tahmini
+placebo  8.52      44057.0     41        166       PLASEBO: NWP matrisi 7 gun geri kaydirilmis
+
+BITTI.

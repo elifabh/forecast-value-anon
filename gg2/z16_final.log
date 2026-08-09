@@ -1,0 +1,57 @@
+============================================================================
+Z16 SONUC - PLASEBONUN DOGRU TESTI
+============================================================================
+  50 gun x 48 adim | 10000 tekrar | eslestirilmis
+
+  SEVIYELER
+  kol           alpha    ihlal %     kar EUR
+  --------------------------------------------
+  NWP           0.799       9.80     10248.0
+  plac3         1.285      10.21      9971.9
+  plac7         1.461      11.16      9496.0
+  plac14        1.291      11.77      9600.8
+  plac21        1.636      12.39      9598.2
+  naive         1.000      11.28      9681.4
+
+============================================================================
+CIPA
+============================================================================
+  naive - NWP = +1.54 +/- 0.72  (beklenen +1.54 +/- 0.72)  -> GECTI
+
+============================================================================
+ASIL TEST: her plasebo GERCEK NWP'den kotu mu?
+============================================================================
+  cift                 fark pp      SE    kat  hukum
+  ----------------------------------------------------------
+  plac3 - NWP            +0.45    0.39    1.2  cozulmuyor
+  plac7 - NWP            +1.42    0.60    2.4  PLASEBO KOTU (2 SE)
+  plac14 - NWP           +2.04    0.76    2.7  PLASEBO KOTU (2 SE)
+  plac21 - NWP           +2.66    0.76    3.5  PLASEBO KOTU (2 SE)
+
+  referans: her plasebo naive'e gore
+  cift                 fark pp      SE    kat  hukum
+  ----------------------------------------------------------
+  plac3 - naive          -1.08    0.67    1.6  cozulmuyor
+  plac7 - naive          -0.12    0.75    0.2  cozulmuyor
+  plac14 - naive         +0.50    0.49    1.0  cozulmuyor
+  plac21 - naive         +1.13    0.61    1.8  cozulmuyor
+
+  kar (plasebo - NWP, EUR)
+  plac3 - NWP             -231     533    0.4  cozulmuyor
+  plac7 - NWP             -713     770    0.9  cozulmuyor
+  plac14 - NWP            -634     715    0.9  cozulmuyor
+  plac21 - NWP            -617     949    0.6  cozulmuyor
+
+============================================================================
+ON-KAYITLI HUKUM
+============================================================================
+  HUKUM (2): 2 SE ile kotu olanlar: plac7, plac14, plac21
+             cozulmeyenler          : plac3
+    -> Asanlar plasebo kanitidir. Asmayanlar COZULMEDI diye
+       raporlanir. Hicbiri gizlenmez, hicbiri secilmez.
+
+  EK OLCUM (Adim 2): kaydirilmis tahminlerin alpha'si
+    plac3 1.285 | plac7 1.461 | plac14 1.291 | plac21 1.636
+    Hepsi 1'in USTUNDE -> kaydirilmis tahminlerin becerisi YOK.
+    Kaydirma uzunluguyla monoton DEGIL; sebep BILINMIYOR, uydurulmaz.
+

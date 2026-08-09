@@ -1,0 +1,47 @@
+==========================================================================
+Z15 ADIM 2 - HAVA MODELI BASINA CAP-NORM TAHMIN MATRISI
+==========================================================================
+  TEK DEGISKEN: hava modeli. lgbm/seed42/cap-norm/fit 0:13800 SABIT.
+  referans: gg2/data/nwp_solar_fc_capnorm.npz | model=lgbm | a_mean=0.799
+  joint 16230 adim | K=48 | test 13800:16229
+
+==========================================================================
+EGITIM
+==========================================================================
+  best_match     X(16230, 14) | MAE 0.1801 | alpha 0.799 | kuyruk 0.926 | naive YENILDI
+  ecmwf_ifs025   X(16230, 14) | MAE 0.1712 | alpha 0.759 | kuyruk 0.828 | naive YENILDI
+  gfs_seamless   X(16230, 14) | MAE 0.2084 | alpha 0.924 | kuyruk 0.994 | naive YENILDI
+
+==========================================================================
+CIPA - best_match boru hattini yeniden uretiyor mu?
+==========================================================================
+  matris max fark = 0.000e+00  (tolerans 1e-04)
+  alpha           = 0.799  beklenen 0.799  fark -0.0002 (tolerans 0.002)
+  -> GECTI
+
+==========================================================================
+YAZIM (best_match ATLANIR - zaten var)
+==========================================================================
+  best_match     -> atlandi (gg2/data/nwp_solar_fc_capnorm.npz zaten var)
+  ecmwf_ifs025   -> yazildi: gg2\data\nwp_solar_fc_capnorm_ecmwf_ifs025.npz
+  gfs_seamless   -> yazildi: gg2\data\nwp_solar_fc_capnorm_gfs_seamless.npz
+
+==========================================================================
+ADIM 3 - MPC KOSUMU (bu script kosmaz)
+==========================================================================
+  best_match kolu ZATEN VAR: %9.80 / 10248 EUR
+  Kalan iki kol (ayri pencerelerde ayni anda kosabilir, ~12 dk):
+
+  python gg2/gg2_nwp_mpc_fair.py \
+      --nwp gg2/data/nwp_solar_fc_capnorm_ecmwf_ifs025.npz \
+      --out gg2/nwp_fair_ecmwf_ifs025.npz 2>&1 | tee gg2/nwp_fair_ecmwf_ifs025.log
+
+  python gg2/gg2_nwp_mpc_fair.py \
+      --nwp gg2/data/nwp_solar_fc_capnorm_gfs_seamless.npz \
+      --out gg2/nwp_fair_gfs_seamless.npz 2>&1 | tee gg2/nwp_fair_gfs_seamless.log
+
+  alpha ozeti (test blogu):
+    best_match     alpha 0.799 | kuyruk 0.926
+    ecmwf_ifs025   alpha 0.759 | kuyruk 0.828
+    gfs_seamless   alpha 0.924 | kuyruk 0.994
+

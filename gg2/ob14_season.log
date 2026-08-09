@@ -1,0 +1,72 @@
+
+==============================================================================
+0. KUNYE
+==============================================================================
+numpy 2.3.5 | python 3.13.5
+gun 48 adim | 50 gun | 10000 tekrar | seed 12345 | RNG numpy default_rng
+cipa blogu T0=13800 | kol blogu T0=0 | dosya oneki ob13_0_
+
+==============================================================================
+1. CIPA B1 - case33bw MANSETI YENIDEN URET
+==============================================================================
+  naive   seviye (50 gun): ihlal 11.21% | kar 9640.4 EUR
+  nwp     seviye (50 gun): ihlal 9.67% | kar 10193.7 EUR
+  oracle  seviye (50 gun): ihlal 9.04% | kar 10561.7 EUR
+
+  naive - NWP      gozlenen     +1.54 puan | boot ort     +1.54  SD    0.72 | %95 GA [   +0.29,    +3.12] | carpik +0.48 | P(<=0) 0.005
+
+  DEVIR v8 3.1 : +1.54 | SD 0.72 | GA [0.29, 3.12]
+  B1 -> GECTI
+  NWP - oracle     gozlenen     +0.62 puan | boot ort     +0.62  SD    0.40 | %95 GA [   -0.13,    +1.42] | carpik +0.13 | P(<=0) 0.060
+  naive - NWP kar  gozlenen    -11.07 EUR  | boot ort    -11.12  SD   14.44 | %95 GA [  -38.83,   +17.76] | carpik +0.03 | P(<=0) 0.784
+
+==============================================================================
+2. mv_oberrhein - SEVIYELER
+==============================================================================
+  naive   50 gun: ihlal 1.04% | kar 48631.5 EUR   (tam blok ayrica ayri raporlanir)
+  nwp     50 gun: ihlal 0.33% | kar 49862.2 EUR   (tam blok ayrica ayri raporlanir)
+  oracle  50 gun: ihlal 0.50% | kar 49229.9 EUR   (tam blok ayrica ayri raporlanir)
+
+==============================================================================
+3. mv_oberrhein - IHLAL FARKLARI
+==============================================================================
+  naive - NWP      gozlenen     +0.71 puan | boot ort     +0.71  SD    0.43 | %95 GA [   +0.04,    +1.67] | carpik +0.70 | P(<=0) 0.022
+  naive - oracle   gozlenen     +0.54 puan | boot ort     +0.54  SD    0.30 | %95 GA [   +0.04,    +1.21] | carpik +0.56 | P(<=0) 0.018
+  NWP - oracle     gozlenen     -0.17 puan | boot ort     -0.17  SD    0.23 | %95 GA [   -0.67,    +0.25] | carpik -0.44 | P(<=0) 0.762
+
+==============================================================================
+4. mv_oberrhein - KAR FARKLARI
+==============================================================================
+  naive - NWP      gozlenen    -24.61 EUR  | boot ort    -24.37  SD   28.06 | %95 GA [  -79.40,   +30.29] | carpik +0.03 | P(<=0) 0.807
+  naive - oracle   gozlenen    -11.97 EUR  | boot ort    -11.79  SD   41.12 | %95 GA [  -89.66,   +71.18] | carpik +0.13 | P(<=0) 0.622
+  NWP - oracle     gozlenen    +12.65 EUR  | boot ort    +12.58  SD   18.92 | %95 GA [  -23.23,   +50.91] | carpik +0.14 | P(<=0) 0.260
+
+==============================================================================
+4b. PLASEBO (varsa)
+==============================================================================
+  ob8_placebo.npz YOK - plasebo kolu kosulmamis.
+  (python gg2/gg2_ob8_arms.py --arm placebo)
+
+==============================================================================
+5. HUKUM
+==============================================================================
+ON-KAYITLI CUMLE (ihlal, naive - NWP):
+  Etki ikinci fiderde de gozleniyor: ihlaller 1.04%'den 0.33%'ye
+  dusuyor, fark 0.71 puan, %95 GA [0.04, 1.67], P(fark<=0)=0.022.
+
+KAR (naive - NWP):
+  Kar farki OLCULEMEDI: -25 EUR, %95 GA [-79, 30].
+  Veri ne kazanci ne kaybi destekliyor.
+
+MUKEMMEL ONGORUYE BOSLUK (NWP - oracle):
+  COZULMUYOR: -0.17 puan, %95 GA [-0.67, 0.25]. Gun-oncesi tahmin,
+  mukemmel solar ongorusunden olculebilir sekilde kotu DEGIL.
+
+IKI FIDER YAN YANA (ihlal, naive - NWP):
+  case33bw     : +1.54 puan, GA [0.29, 3.12]
+  mv_oberrhein : +0.71 puan, GA [0.04, 1.67]
+
+SINIR: iki fider AYNI Irlanda serisini ve AYNI test blogunu kullaniyor.
+Bagimsiz tekrar DEGIL; ayni gunlerde farkli sebeke.
+
+BITTI.

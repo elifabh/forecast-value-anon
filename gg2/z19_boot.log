@@ -1,0 +1,70 @@
+==============================================================================
+Z19 - SIFIR-HAVA KOLLARI, ESLESTIRILMIS GUNLUK-BLOK BOOTSTRAP
+==============================================================================
+  blok 48 adim | 50 gun | 10000 tekrar | LO=0.950 HI=1.050
+  yuklendi: naive       <- gg2/nwp_fair_traj_naive.npz  (done=2429)
+  yuklendi: best_match  <- gg2/nwp_fair_traj_nwp.npz  (done=2429)
+  yuklendi: cal         <- gg2/nwp_fair_cal_nwp.npz  (done=2429)
+  yuklendi: calcap      <- gg2/nwp_fair_calcap_nwp.npz  (done=2429)
+  bootstrap penceresi: ilk 2400 adim (50 x 48)
+
+==============================================================================
+SEVIYELER (tam yorunge)
+==============================================================================
+  kol           alpha    adim   ihlal %     kar EUR
+  naive         1.000    2429     11.28      9681.4
+  best_match    0.799    2429      9.80     10248.0
+  cal           1.594    2429     12.06      9421.2
+  calcap        1.594    2429     12.76      9605.9
+
+==============================================================================
+S3 - cal / calcap YORUNGE KIMLIK TESTI (bootstrap degil, dogrudan)
+==============================================================================
+  mn   max|fark| = 3.817393e-02   farkli adim = 2145 / 2429
+  mx   max|fark| = 5.872272e-02   farkli adim = 1617 / 2429
+  p    max|fark| = 1.391830e+00   farkli adim = 2147 / 2429
+  ihlal bayragi farkli adim = 17 / 2429
+  -> YORUNGELER FARKLI.
+     DEVIR 3.6'daki 'cal ve calcap birebir ayni' cumlesi YANLIS.
+     'cap_est bolmede sadelesiyor' gerekcesi de YANLIS: cap_est
+     bir GIRDI OZELLIGIDIR, bolen degil. Her iki cumle SILINIR.
+
+==============================================================================
+FARKLAR (A - B), eslestirilmis
+==============================================================================
+  karsilastirma              fark pp      SE    kat   hukum
+  ----------------------------------------------------------------------------
+  naive - best_match           +1.54    0.72    2.1   GERCEK       CIPA: DEVIR 3.1 = +1.54 / SE 0.72
+  cal - naive                  +0.80    0.63    1.3   yorumlanmaz  S1 - DEVIR 5.5'in dayanagi
+  calcap - cal                 +0.71    0.16    4.4   GERCEK       S2 - DEVIR 3.6 ic celiskisi (ham +0.70)
+  cal - best_match             +2.33    0.44    5.3   GERCEK       destek: sifir-hava vs gercek NWP
+  calcap - best_match          +3.04    0.52    5.9   GERCEK       destek: sifir-hava vs gercek NWP
+
+  kar farklari (EUR):
+  naive - best_match            -556     722    0.8   yorumlanmaz
+  cal - naive                   -242     909    0.3   yorumlanmaz
+  calcap - cal                  +173     398    0.4   yorumlanmaz
+  cal - best_match              -798     868    0.9   yorumlanmaz
+  calcap - best_match           -625     882    0.7   yorumlanmaz
+
+==============================================================================
+CIPA - DEVIR 3.1 yeniden uretildi mi?
+==============================================================================
+  beklenen: +1.54 pp / SE 0.72
+  olculen : +1.54 pp / SE 0.72
+  -> GECTI
+
+==============================================================================
+ON-KAYITLI HUKUMLER
+==============================================================================
+  S1  cal - naive = +0.80 pp, SE 0.63, 1.3 SE
+      -> DEVIR 5.5 YUMUSATILIR.
+         'above the persistence baseline' CIKARILIR; yerine
+         'not resolved against persistence (1.3 SE)' yazilir.
+         Manset (KATKI 1) etkilenmez.
+  S2  calcap - cal = +0.71 pp, SE 0.16, 4.4 SE
+      -> IKI SIFIR-HAVA KOLU OLCULEBILIR SEKILDE FARKLI.
+         'birebir ayni' SILINIR. Fark SARI LISTEYE eklenir:
+         tek bir ozellik eklemek sonucu 0.71 puan oynatiyor
+         (manset etki 1.48, SE 0.72).
+

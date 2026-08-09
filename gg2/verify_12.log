@@ -1,0 +1,42 @@
+==========================================================================
+[1] PROVENANCE - hangi kod, hangi veri, hangi surum
+==========================================================================
+  git commit : c603b5f  [KIRLI: commit edilmemis degisiklik var]
+  data/aligned_30min_joint.csv               sha256:90cb2457bd1014db     0.89 MB
+  data/forecast_matrix.npz                   sha256:d31fce63b396aae7     4.24 MB
+  data/opf_base_vm.npz                       sha256:42c891436d1bf32b     4.98 MB
+  gg2/data/nwp_ghi_roi.csv                   sha256:b97f31701de3fc75     0.77 MB
+  gg2/data/nwp_solar_fc_capnorm.npz          sha256:efbd804584a6aae9     3.12 MB
+  surum: python 3.13.5 | numpy 2.3.5 | pandas 2.3.3
+         lightgbm 4.6.0 | pandapower 3.4.0 | cvxpy 1.9.1 | sklearn 1.9.0
+  NWP matris: shape (16230, 48) | model lgbm | alpha_mean 0.799
+  naive matris: shape (16230, 48)
+  -> sekiller uyumlu.
+
+==========================================================================
+[2] CAP_EST GECIKMESI - alpha farkinin sebebi olculuyor
+==========================================================================
+        ay  cap_used  cap_true    oran
+  2025-05     2.282     2.292   0.996
+  2025-06     2.311     2.354   0.982
+  2025-07     2.394     2.399   0.998
+  2025-08     2.357     2.303   1.023
+  2025-09     2.290     2.389   0.959
+  2025-10     2.325     1.964   1.184
+  2025-11     1.736     1.513   1.147
+  2025-12     1.256     1.054   1.192
+  2026-01     1.102     1.650   0.668  <- geriden geliyor
+  2026-02     1.162     2.819   0.412  <- geriden geliyor
+  2026-03     2.745     3.000   0.915
+  2026-04     3.071     3.286   0.935
+  2026-05     3.469     3.647   0.951
+
+  yaz blo�u (ilk 2 ay) ort oran : 0.989
+  test blo�u (son 2 ay) ort oran: 0.943
+
+  HUKUM:
+    cap_est iki blokta benzer (0.989 vs 0.943).
+    -> HIPOTEZ CURUDU. alpha farkinin sebebi kapasite gecikmesi DEGIL.
+       Baska sebep aranmali; makalede 'kapasite' diye yazilamaz.
+
+Dogrulama paketi bitti.

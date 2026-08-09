@@ -1,0 +1,30 @@
+==========================================================================
+ADIM 5 - KONTROLCU KUNYESI
+==========================================================================
+  script           : diag_mpc_forecastvolt.fc_windows_ldf (birebir)
+  voltaj penceresi : VM_BASE[i] + LDF farki (TAHMINDEN)  [adil]
+  solar tahmini    : NWP cap-norm (lgbm, alpha=1.594)
+  w_econ           : 1.0
+  dilim            : 13800:16229 (2429 adim) | H=48 | K=48
+  ON-KAYIT (Tablo 1 fair MPC): %11.28 | 9681 EUR
+==========================================================================
+  400/2429  (253 adim/dk, kalan ~8 dk)
+  800/2429  (249 adim/dk, kalan ~7 dk)
+  1200/2429  (249 adim/dk, kalan ~5 dk)
+  1600/2429  (248 adim/dk, kalan ~3 dk)
+  2000/2429  (248 adim/dk, kalan ~2 dk)
+  2400/2429  (246 adim/dk, kalan ~0 dk)
+
+==========================================================================
+SONUC - NWP cap-norm (lgbm, alpha=1.594)
+==========================================================================
+  ihlal 12.76%  |  kar 9605.9 EUR  |  saturated 310
+  yazildi: gg2\nwp_fair_calcap_nwp.npz
+
+  kiyas (ayni kontrolcu, tek degisken solar tahmini):
+    naive  : %11.28 | 9681 EUR  [Tablo 1]
+    bu kosum: %12.76 | 9606 EUR
+
+    Esik icin --use-oracle sonucunu bekle; esik SONUCA BAKILMADAN
+    hesaplanir: naive - 0.5*(naive - oracle).
+

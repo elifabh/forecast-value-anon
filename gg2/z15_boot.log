@@ -1,0 +1,64 @@
+==============================================================================
+Z14+Z15 - ESLESTIRILMIS GUNLUK-BLOK BOOTSTRAP
+==============================================================================
+  blok 48 adim | 50 gun | 10000 tekrar | LO=0.950 HI=1.050
+  yorunge uzunluklari: naive=2429, oracle=2429, best_match=2429, bm_seed1=2429, bm_seed7=2429, ecmwf=2429, gfs=2429
+  bootstrap penceresi: ilk 2400 adim (50 x 48)
+
+==============================================================================
+SEVIYELER (tam yorunge, 2429 adim)
+==============================================================================
+  kol           alpha   ihlal %     kar EUR
+  naive         1.000     11.28      9681.4
+  oracle        0.000      9.14     10573.8
+  best_match    0.799      9.80     10248.0
+  bm_seed1      0.781      9.76     10286.0
+  bm_seed7      0.795      9.72     10254.0
+  ecmwf         0.759      9.39     10532.4
+  gfs           0.924      9.47     10366.0
+
+==============================================================================
+FARKLAR (A - B), eslestirilmis
+==============================================================================
+  karsilastirma            fark pp      SE    kat   hukum
+  --------------------------------------------------------------------------
+  naive - best_match         +1.54    0.72    2.1   GERCEK       CIPA: DEVIR 4.1 = +1.54 / SE 0.72
+  naive - ecmwf              +1.91    0.73    2.6   GERCEK       S4
+  naive - gfs                +1.83    0.77    2.4   GERCEK       S4
+  ecmwf - gfs                -0.08    0.26    0.3   yorumlanmaz  S2 monotonluk
+  ecmwf - best_match         -0.38    0.31    1.2   yorumlanmaz  S1 hava modeli
+  gfs - best_match           -0.29    0.31    0.9   yorumlanmaz  S1 hava modeli
+  best_match - bm_seed1      +0.04    0.07    0.6   yorumlanmaz  S3 seed
+  best_match - bm_seed7      +0.08    0.08    1.0   yorumlanmaz  S3 seed
+  best_match - oracle        +0.62    0.40    1.6   yorumlanmaz  bilgi boslugu
+  ecmwf - oracle             +0.25    0.33    0.8   yorumlanmaz  bilgi boslugu
+
+  kar farklari (EUR):
+  naive - best_match          -556     722    0.8   yorumlanmaz
+  naive - ecmwf               -867     840    1.0   yorumlanmaz
+  naive - gfs                 -702     832    0.8   yorumlanmaz
+  ecmwf - gfs                 +165     362    0.5   yorumlanmaz
+  ecmwf - best_match          +311     359    0.9   yorumlanmaz
+  gfs - best_match            +146     427    0.3   yorumlanmaz
+  best_match - bm_seed1        -36      48    0.8   yorumlanmaz
+  best_match - bm_seed7         -5      44    0.1   yorumlanmaz
+  best_match - oracle         -371     570    0.7   yorumlanmaz
+  ecmwf - oracle               -60     523    0.1   yorumlanmaz
+
+==============================================================================
+CIPA - DEVIR 4.1 yeniden uretildi mi?
+==============================================================================
+  beklenen: +1.54 pp / SE 0.72
+  olculen : +1.54 pp / SE 0.72
+  -> GECTI
+
+==============================================================================
+ON-KAYITLI SORULAR
+==============================================================================
+  S1 hava modeli yayilimi = 0.41 puan  (esik 0.72)
+     -> DUYARSIZ: etki hava modeli secimine bagli degil.
+  S2 ecmwf - gfs = -0.08 pp, 0.3 SE
+     -> AYIRT EDILEMIYOR. Siralama YORUMLANMAZ.
+        'monoton' da 'monoton degil' de YAZILMAZ.
+  S3 seed yayilimi = 0.08 puan
+

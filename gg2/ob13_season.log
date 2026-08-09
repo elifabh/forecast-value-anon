@@ -1,0 +1,83 @@
+
+==============================================================================
+0. KUNYE
+==============================================================================
+pandapower 3.4.0 | numpy 2.3.5 | python 3.13.5
+cvxpy 1.9.1 | numba=True
+
+fider mv_oberrhein | k*=2.859375 | 108 MV bara | batarya bara 147
+P_MAX 8.00 MW | CAP 16.00 MWh | ETA 0.94868 | dt 0.50 | w_econ 1.0 | H 48
+dilim 0:2400 (2400 adim) | LO 0.95 HI 1.05 MARGIN 0.005
+A7 npz k* tutarliligi -> GECTI
+A8 safe layer <-> VM_BASE: |fark| = 0.000e+00 -> GECTI
+
+==============================================================================
+KOL: NAIVE  (daily-naive)
+==============================================================================
+A9 tahmin matrisi sekli (16230, 48) (bek (16230, 48)) -> GECTI
+cikti zaten var: <repo>\gg2\data\ob13_0_naive.npz  -> bu kol ATLANDI (--resume ile devam)
+
+==============================================================================
+KOL: NWP  (NWP cap-norm (lgbm, alpha=nan))
+==============================================================================
+A9 tahmin matrisi sekli (16230, 48) (bek (16230, 48)) -> GECTI
+  300/2400  (129 adim/dk, kalan ~16.3 dk)
+  600/2400  (128 adim/dk, kalan ~14.0 dk)
+  900/2400  (126 adim/dk, kalan ~11.9 dk)
+  1200/2400  (126 adim/dk, kalan ~9.5 dk)
+  1500/2400  (126 adim/dk, kalan ~7.1 dk)
+  1800/2400  (125 adim/dk, kalan ~4.8 dk)
+  2100/2400  (124 adim/dk, kalan ~2.4 dk)
+  2400/2400  (124 adim/dk, kalan ~0.0 dk)
+
+  ihlal 0.33%  (8 adim; dusuk voltaj 0) | kar 49862.2 EUR
+  saturated 8
+  [UYARI] ihlal ayristirmasi bu blokta GECERSIZ:
+          REQ_BY_STEP test blogu adimlariyla anahtarli,
+          bu blokta hepsi UZAMSAL gorunur. YOK SAYILMALI.
+  ihlal ayristirmasi (totoloji degil, IS 3 olcumune karsi):
+    UZAMSAL   (hicbir gucle giderilemez) :    8  (100.0%)
+    SOC/GUC   (o an kapasite yetmedi)    :    0  (0.0%)
+    BEKLENMEDIK                          :    0  (0.0%)
+    ihlalli adimlarda mevcut sarj gucu p_hi: ort 0.01 / P_MAX 8.00 MW
+  SOC ort 7.16 MWh (45% dolu) | yazildi: <repo>\gg2\data\ob13_0_nwp.npz
+
+==============================================================================
+KOL: ORACLE  (solar-ORACLE)
+==============================================================================
+A9 tahmin matrisi sekli (16230, 48) (bek (16230, 48)) -> GECTI
+  300/2400  (134 adim/dk, kalan ~15.7 dk)
+  600/2400  (129 adim/dk, kalan ~14.0 dk)
+  900/2400  (125 adim/dk, kalan ~12.0 dk)
+  1200/2400  (125 adim/dk, kalan ~9.6 dk)
+  1500/2400  (124 adim/dk, kalan ~7.3 dk)
+  1800/2400  (125 adim/dk, kalan ~4.8 dk)
+  2100/2400  (125 adim/dk, kalan ~2.4 dk)
+  2400/2400  (125 adim/dk, kalan ~0.0 dk)
+
+  ihlal 0.50%  (12 adim; dusuk voltaj 0) | kar 49229.9 EUR
+  saturated 12
+  [UYARI] ihlal ayristirmasi bu blokta GECERSIZ:
+          REQ_BY_STEP test blogu adimlariyla anahtarli,
+          bu blokta hepsi UZAMSAL gorunur. YOK SAYILMALI.
+  ihlal ayristirmasi (totoloji degil, IS 3 olcumune karsi):
+    UZAMSAL   (hicbir gucle giderilemez) :   12  (100.0%)
+    SOC/GUC   (o an kapasite yetmedi)    :    0  (0.0%)
+    BEKLENMEDIK                          :    0  (0.0%)
+    ihlalli adimlarda mevcut sarj gucu p_hi: ort 0.02 / P_MAX 8.00 MW
+  SOC ort 7.27 MWh (45% dolu) | yazildi: <repo>\gg2\data\ob13_0_oracle.npz
+
+==============================================================================
+OZET - mv_oberrhein
+==============================================================================
+kontrolsuz taban: BU BLOK ICIN OLCULMEDI
+
+kol      ihlal%    kar EUR     uzamsal   SOC/guc   solar tahmini
+naive    1.04      48631.5     0         0         daily-naive
+nwp      0.33      49862.2     8         0         NWP cap-norm (lgbm, alpha=nan)
+oracle   0.50      49229.9     12        0         solar-ORACLE
+
+naive - NWP = +0.71 puan  (SEVIYE FARKI - HUKUM DEGIL)
+Hukum sadece eslestirilmis gunluk-blok bootstrap ile verilir.
+
+BITTI.

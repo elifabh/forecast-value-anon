@@ -1,0 +1,173 @@
+==============================================================================
+Z20 ENVANTER - hicbir hukum verilmez, sadece listelenir
+==============================================================================
+  kok: <repo>
+
+------------------------------------------------------------------------------
+  KLASOR: .   (0 dosya)
+------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------
+  KLASOR: gg2   (15 dosya)
+------------------------------------------------------------------------------
+    mpc_solar_a25_traj.npz                                npz  6 anahtar
+        mn                     shape=(2429,)          dtype=float64    min=0.9531 max=0.9986
+        mx                     shape=(2429,)          dtype=float64    min=1 max=1.171
+        p                      shape=(2429,)          dtype=float64    min=-1.226 max=2.384
+        soc                    shape=(2429,)          dtype=float64    min=1.919e-11 max=6
+        start                  shape=()               dtype=int64      deger=13800
+        done                   shape=()               dtype=int64      deger=2429
+    mpc_solar_a50_traj.npz                                npz  6 anahtar
+        mn                     shape=(2429,)          dtype=float64    min=0.9531 max=0.9986
+        mx                     shape=(2429,)          dtype=float64    min=1 max=1.171
+        p                      shape=(2429,)          dtype=float64    min=-1.226 max=2.384
+        soc                    shape=(2429,)          dtype=float64    min=7.892e-12 max=6
+        start                  shape=()               dtype=int64      deger=13800
+        done                   shape=()               dtype=int64      deger=2429
+    mpc_solar_a75_traj.npz                                npz  6 anahtar
+        mn                     shape=(2429,)          dtype=float64    min=0.9531 max=0.9986
+        mx                     shape=(2429,)          dtype=float64    min=1 max=1.171
+        p                      shape=(2429,)          dtype=float64    min=-1.226 max=2.384
+        soc                    shape=(2429,)          dtype=float64    min=1.18e-11 max=6
+        start                  shape=()               dtype=int64      deger=13800
+        done                   shape=()               dtype=int64      deger=2429
+    mpc_solar_oracle_traj.npz                             npz  6 anahtar
+        mn                     shape=(2429,)          dtype=float64    min=0.9532 max=0.9986
+        mx                     shape=(2429,)          dtype=float64    min=1 max=1.171
+        p                      shape=(2429,)          dtype=float64    min=-1.226 max=2.384
+        soc                    shape=(2429,)          dtype=float64    min=5.463e-10 max=6
+        start                  shape=()               dtype=int64      deger=13800
+        done                   shape=()               dtype=int64      deger=2429
+    nwp_fair_cal_nwp.npz                                  npz  6 anahtar
+        mn                     shape=(2429,)          dtype=float64    min=0.9528 max=0.9986
+        mx                     shape=(2429,)          dtype=float64    min=1 max=1.171
+        p                      shape=(2429,)          dtype=float64    min=-1.226 max=2.765
+        soc                    shape=(2429,)          dtype=float64    min=0 max=6
+        start                  shape=()               dtype=int64      deger=13800
+        done                   shape=()               dtype=int64      deger=2429
+    nwp_fair_calcap_nwp.npz                               npz  6 anahtar
+        mn                     shape=(2429,)          dtype=float64    min=0.9528 max=0.9986
+        mx                     shape=(2429,)          dtype=float64    min=1 max=1.171
+        p                      shape=(2429,)          dtype=float64    min=-1.226 max=2.765
+        soc                    shape=(2429,)          dtype=float64    min=6.197e-12 max=6
+        start                  shape=()               dtype=int64      deger=13800
+        done                   shape=()               dtype=int64      deger=2429
+    nwp_fair_ecmwf_ifs025_nwp.npz                         npz  6 anahtar
+        mn                     shape=(2429,)          dtype=float64    min=0.9528 max=0.9986
+        mx                     shape=(2429,)          dtype=float64    min=1 max=1.171
+        p                      shape=(2429,)          dtype=float64    min=-1.226 max=2.47
+        soc                    shape=(2429,)          dtype=float64    min=0 max=6
+        start                  shape=()               dtype=int64      deger=13800
+        done                   shape=()               dtype=int64      deger=2429
+    nwp_fair_gfs_seamless_nwp.npz                         npz  6 anahtar
+        mn                     shape=(2429,)          dtype=float64    min=0.9528 max=0.9986
+        mx                     shape=(2429,)          dtype=float64    min=1 max=1.171
+        p                      shape=(2429,)          dtype=float64    min=-1.226 max=2.765
+        soc                    shape=(2429,)          dtype=float64    min=0 max=6
+        start                  shape=()               dtype=int64      deger=13800
+        done                   shape=()               dtype=int64      deger=2429
+    nwp_fair_s1_nwp.npz                                   npz  6 anahtar
+        mn                     shape=(2429,)          dtype=float64    min=0.9528 max=0.9986
+        mx                     shape=(2429,)          dtype=float64    min=1 max=1.171
+        p                      shape=(2429,)          dtype=float64    min=-1.226 max=2.384
+        soc                    shape=(2429,)          dtype=float64    min=0 max=6
+        start                  shape=()               dtype=int64      deger=13800
+        done                   shape=()               dtype=int64      deger=2429
+    nwp_fair_s7_nwp.npz                                   npz  6 anahtar
+        mn                     shape=(2429,)          dtype=float64    min=0.9528 max=0.9986
+        mx                     shape=(2429,)          dtype=float64    min=1 max=1.171
+        p                      shape=(2429,)          dtype=float64    min=-1.226 max=2.384
+        soc                    shape=(2429,)          dtype=float64    min=0 max=6
+        start                  shape=()               dtype=int64      deger=13800
+        done                   shape=()               dtype=int64      deger=2429
+    nwp_fair_traj_naive.npz                               npz  6 anahtar
+        mn                     shape=(2429,)          dtype=float64    min=0.9529 max=0.9986
+        mx                     shape=(2429,)          dtype=float64    min=1 max=1.171
+        p                      shape=(2429,)          dtype=float64    min=-1.226 max=2.765
+        soc                    shape=(2429,)          dtype=float64    min=0 max=6
+        start                  shape=()               dtype=int64      deger=13800
+        done                   shape=()               dtype=int64      deger=2429
+    nwp_fair_traj_nwp.npz                                 npz  6 anahtar
+        mn                     shape=(2429,)          dtype=float64    min=0.9528 max=0.9986
+        mx                     shape=(2429,)          dtype=float64    min=1 max=1.171
+        p                      shape=(2429,)          dtype=float64    min=-1.226 max=2.384
+        soc                    shape=(2429,)          dtype=float64    min=0 max=6
+        start                  shape=()               dtype=int64      deger=13800
+        done                   shape=()               dtype=int64      deger=2429
+    nwp_fair_traj_oracle.npz                              npz  6 anahtar
+        mn                     shape=(2429,)          dtype=float64    min=0.9528 max=0.9986
+        mx                     shape=(2429,)          dtype=float64    min=1 max=1.171
+        p                      shape=(2429,)          dtype=float64    min=-1.226 max=2.474
+        soc                    shape=(2429,)          dtype=float64    min=0 max=6
+        start                  shape=()               dtype=int64      deger=13800
+        done                   shape=()               dtype=int64      deger=2429
+    nwp_mpc_traj.npz                                      npz  6 anahtar
+        mn                     shape=(2429,)          dtype=float64    min=0.9531 max=0.9986
+        mx                     shape=(2429,)          dtype=float64    min=1 max=1.171
+        p                      shape=(2429,)          dtype=float64    min=-1.226 max=2.384
+        soc                    shape=(2429,)          dtype=float64    min=6.226e-10 max=6
+        start                  shape=()               dtype=int64      deger=13800
+        done                   shape=()               dtype=int64      deger=2429
+    nwp_mpc_traj_naive.npz                                npz  6 anahtar
+        mn                     shape=(2429,)          dtype=float64    min=0.9531 max=0.9986
+        mx                     shape=(2429,)          dtype=float64    min=1 max=1.171
+        p                      shape=(2429,)          dtype=float64    min=-1.226 max=2.384
+        soc                    shape=(2429,)          dtype=float64    min=0 max=6
+        start                  shape=()               dtype=int64      deger=13800
+        done                   shape=()               dtype=int64      deger=2429
+
+==============================================================================
+BEKLENEN YORUNGELER (DEVIR'den)
+==============================================================================
+  nwp_fair_traj_naive.npz                  VAR  -> gg2\nwp_fair_traj_naive.npz
+  nwp_fair_traj_oracle.npz                 VAR  -> gg2\nwp_fair_traj_oracle.npz
+  nwp_fair_traj_nwp.npz                    VAR  -> gg2\nwp_fair_traj_nwp.npz
+  nwp_fair_s1_nwp.npz                      VAR  -> gg2\nwp_fair_s1_nwp.npz
+  nwp_fair_s7_nwp.npz                      VAR  -> gg2\nwp_fair_s7_nwp.npz
+  nwp_fair_ecmwf_ifs025_nwp.npz            VAR  -> gg2\nwp_fair_ecmwf_ifs025_nwp.npz
+  nwp_fair_gfs_seamless_nwp.npz            VAR  -> gg2\nwp_fair_gfs_seamless_nwp.npz
+  nwp_fair_cal_nwp.npz                     VAR  -> gg2\nwp_fair_cal_nwp.npz
+  nwp_fair_calcap_nwp.npz                  VAR  -> gg2\nwp_fair_calcap_nwp.npz
+
+  NOT: sekiz plasebo (p1..p21) yorunge adi DEVIR'de yok.
+       Yukaridaki dosya listesinde 'plac' / 'shift' / 'p1' gecen
+       adlar varsa Z20'de kullanilacak.
+
+==============================================================================
+GERCEK SOLAR SERISI (hata istatistigi bunun uzerinden hesaplanir)
+==============================================================================
+  mpc_econ_voltage_pareto YUKLENDI
+  SPLIT=13800  dt=0.5  LO=0.950  HI=1.050
+  modul icindeki numpy dizileri:
+    Rcol               shape=(33,)          min=0 max=0.6902
+    VM_BASE            shape=(16230, 33)    min=0.941 max=1.171
+    dmult              shape=(16230,)       min=0.7031 max=1.468
+    dmult_fc           shape=(16230, 48)    min=0.6851 max=1.401
+    price              shape=(16230,)       min=-23.5 max=464.3
+    price_fc           shape=(16230, 48)    min=-16.17 max=381.2
+    solar              shape=(16230,)       min=0 max=3.749
+    solar_fc           shape=(16230, 48)    min=0 max=3.749
+    wind               shape=(16230,)       min=0 max=2
+    wind_fc            shape=(16230, 48)    min=0 max=2.096
+
+==============================================================================
+TAHMIN MATRISI URETEN KOD - imzalar
+==============================================================================
+  forecast_matrix.py         VAR
+         4  [DOSYA] Cikti env-IC birimlerinde; causal (i'de sadece <=T_i bilgisi). -> data/forecast_matrix.n
+        24  class GRUF(nn.Module):
+        25  def __init__(s,nf,h,l,ho):
+        27  def forward(s,x): _,h=s.gru(x); return s.head(s.drop(h[-1]))
+        29  def load_model(path):
+        34  def cal_feats(times):     # forecast_*.py ile ayni (saatlik'te dk=0)
+        39  def gru_forecast(model,mu,sd,cfg,y,ntimes,to_env):
+        55  def lgbm_forecast(jpath,y,ntimes,to_env):
+        70  def ridge_forecast(jpath,y,ntimes,to_env):
+        86  def prep_hourly(csv,dtcol,col,gap=3):
+        94  def prep_wind(csv,col="wind_mw",gap=6):
+       115  def truth(arr,k): j=np.minimum(np.arange(N)+k,N-1); return arr[j]
+       125  [DOSYA] np.savez_compressed("data/forecast_matrix.npz",solar=solar_fc,wind=wind_fc,dmult=dmult_f
+       127  [DOSYA] print(f"\nkaydedildi: data/forecast_matrix.npz | her seri {solar_fc.shape}")
+  gg2_nwp_build_fc.py        YOK
+  gg2_nwp_mpc_fair.py        YOK
+

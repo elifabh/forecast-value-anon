@@ -1,0 +1,60 @@
+
+==============================================================================
+0. KUNYE
+==============================================================================
+pandapower 3.4.0 | numpy 2.3.5 | python 3.13.5
+numba=True | k*=2.859375 | ikili arama 16 adim
+bilesen 0: 93 sgen, nominal 12.1657 MW
+test blogu toplam solar uretimi: 12169.7 MWh
+
+==============================================================================
+1. KOLLAR - KISINTI OLCUMU
+==============================================================================
+  naive   ihlal  182 | kisinti   839.88 MWh ( 6.90% solar) | max kisinti orani 0.563 | cipa |dV| 0.00e+00 | 96 s
+  nwp     ihlal  154 | kisinti   760.18 MWh ( 6.25% solar) | max kisinti orani 0.563 | cipa |dV| 0.00e+00 | 84 s
+  oracle  ihlal  153 | kisinti   753.20 MWh ( 6.19% solar) | max kisinti orani 0.563 | cipa |dV| 0.00e+00 | 83 s
+
+==============================================================================
+2. CIPA C10
+==============================================================================
+  naive   max |Vmax_yeniden - mx_yorunge| = 0.000e+00
+  nwp     max |Vmax_yeniden - mx_yorunge| = 0.000e+00
+  oracle  max |Vmax_yeniden - mx_yorunge| = 0.000e+00
+  esik 1e-09 -> C10 GECTI
+
+==============================================================================
+3. SEVIYELER - IKI FIDER YAN YANA
+==============================================================================
+kol      | mv_oberrhein                 | case33bw (DEVIR v8 3.4)
+naive    |   839.88 MWh  ( 6.90% solar) |   126.92 MWh  (12.32% solar)
+nwp      |   760.18 MWh  ( 6.25% solar) |   119.44 MWh  (11.59% solar)
+oracle   |   753.20 MWh  ( 6.19% solar) |   112.55 MWh  (10.92% solar)
+
+==============================================================================
+4. BOOTSTRAP - ESLESTIRILMIS GUNLUK BLOK
+==============================================================================
+(ilk 50 tam gun; kol 2429 adim, artan 29 adim atildi)
+
+  naive - NWP      gozlenen   +80.76 MWh | boot ort   +81.08  SD  36.22 | %95 GA [  +17.61,  +158.82] | P(<=0) 0.003
+  naive - oracle   gozlenen   +75.72 MWh | boot ort   +76.34  SD  31.76 | %95 GA [  +17.35,  +140.96] | P(<=0) 0.004
+  NWP - oracle     gozlenen    -5.03 MWh | boot ort    -4.73  SD  27.33 | %95 GA [  -61.80,   +45.01] | P(<=0) 0.552
+
+==============================================================================
+5. HUKUM
+==============================================================================
+Tahmin, elli gunde bir fiderde 80.76 MWh kisintiyi onluyor,
+%95 GA [17.61, 158.82], P(fark<=0)=0.003.
+
+NWP - oracle (case33bw'de ihlalde COZULMUYOR ama kisintida COZULUYORDU):
+  ihlal   : DEVIR v8 -> case33bw [-0.13, +1.42] | oberrhein [-1.17, +0.83]
+  kisinti : case33bw [+2.33, +12.97] | oberrhein [-61.80, 45.01]
+  -> DESEN TEKRARLANMIYOR: oberrhein'de kisintida da cozulmuyor.
+  Bu bir GOZLEMDIR, manset degildir (DEVIR v8 3.4 ile ayni statu).
+
+SINIR: bu, ihlali gidermek icin GEREKEN kisintidir; gercek bir dagitim
+isletmecisinin kisinti politikasi modellenmedi. UST SINIR tahminidir.
+
+yazildi: <repo>\gg2\data\ob10_curt.npz
+C10 GECTI
+
+BITTI.

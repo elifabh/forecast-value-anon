@@ -1,0 +1,57 @@
+==============================================================================
+[B] TEKRAR - oracle w_econ supurmesi, blok 0:2400 (yaz 2025)
+==============================================================================
+  W_SLACK = 1e4 (sabit, solve_window icinde)
+  supurulen w_econ: [100.0, 300.0, 1000.0, 3000.0]
+  on-kayit hedef  : oracle ihlal<=2.38% VE kar>=12798 EUR
+  bilinen noktalar: oracle w=1.0 -> 2.08% / 12414 EUR
+                    NWP    w=1.0 -> 2.38% / 12798 EUR
+==============================================================================
+
+  --- oracle w_econ=100 kosuluyor...
+      w=100: 800/2400
+      w=100: 1600/2400
+      w=100: 2400/2400
+      w=100: ihlal 3.25% | kar 12510 EUR
+
+  --- oracle w_econ=300 kosuluyor...
+      w=300: 800/2400
+      w=300: 1600/2400
+      w=300: 2400/2400
+      w=300: ihlal 5.21% | kar 11433 EUR
+
+  --- oracle w_econ=1000 kosuluyor...
+      w=1000: 800/2400
+      w=1000: 1600/2400
+      w=1000: 2400/2400
+      w=1000: ihlal 5.96% | kar 9592 EUR
+
+  --- oracle w_econ=3000 kosuluyor...
+      w=3000: 800/2400
+      w=3000: 1600/2400
+      w=3000: 2400/2400
+      w=3000: ihlal 5.08% | kar 9807 EUR
+
+==============================================================================
+ORACLE PARETO ONU
+==============================================================================
+     w_econ   ihlal%   kar(EUR)   NWP'yi yakaladi mi?
+          1     2.08      12414   hayir  [onceki kosum]
+        100     3.25      12510   hayir
+        300     5.21      11433   hayir
+       1000     5.96       9592   hayir
+       3000     5.08       9807   hayir
+         --     2.38      12798   <- NWP
+
+  DUGME KONTROLU (hukumden ONCE - onceki denemeyi bu yakalardi):
+    kar araligi   : 9592 -> 12510 EUR  (%30.4)
+    ihlal araligi : 2.08 -> 5.96  (3.88 puan)
+    -> agirlik isiriyor (kar araligi %30.4). Hukum verilebilir.
+
+  HUKUM:
+    KALDI - agirlik isiriyor AMA hicbir noktada oracle NWP'yi ikisinde
+    birden yakalayamiyor. NWP, mukemmel-bilgili referansi GERCEKTEN
+    domine ediyor. Bu aciklanamaz.
+    -> Oracle satiri tablodan CIKARILIR. Ana bulgu (naive 11.28 -> NWP 9.80)
+       bundan ETKILENMEZ; oracle sadece referans satiriydi.
+

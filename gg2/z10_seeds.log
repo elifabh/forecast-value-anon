@@ -1,0 +1,42 @@
+==========================================================================
+Z10 - TAHMINCI SEED DUYARLILIGI  (seed: 42, 1, 7)
+==========================================================================
+  joint 16230 adim | K=48 | EPS=0.02
+
+==========================================================================
+[A] VALIDATION  (fit 2400:13800, olcum 96:2352) - Z9 karari
+==========================================================================
+    seed 42   ham 0.626 | cap-norm 0.593 | fark -0.033
+    seed 1    ham 0.614 | cap-norm 0.582 | fark -0.031
+    seed 7    ham 0.641 | cap-norm 0.590 | fark -0.052
+
+  alpha ham (val)        0.626 0.614 0.641 | ort 0.627 | yayilim 0.028
+  alpha cap-norm (val)   0.593 0.582 0.590 | ort 0.588 | yayilim 0.011
+  cap-norm - ham (val)   -0.033 -0.031 -0.052 | ort -0.039 | yayilim 0.020
+
+  Z9 kontrolu: uc seed'de de fark < -EPS(0.02) mi -> EVET
+
+==========================================================================
+[B] TEST  (fit 0:13800, olcum 13800:16229) - POST-HOC ROBUSTLUK, SECIM DEGIL
+==========================================================================
+    seed 42   alpha 0.799  (MAE azaltmasi %20.1)
+    seed 1    alpha 0.781  (MAE azaltmasi %21.9)
+    seed 7    alpha 0.795  (MAE azaltmasi %20.5)
+
+  alpha cap-norm (test)  0.799 0.781 0.795 | ort 0.792 | yayilim 0.018
+
+  Yayinlanan deger (seed 42): 0.799
+
+==========================================================================
+ON-KAYITLI HUKUM
+==========================================================================
+  TEST alpha yayilimi = 0.018  (esik 0.02)
+  -> SEED'E DUYARSIZ. Tek seed yeterli.
+     Makalede: alpha = 0.792 +/- 0.009 (3 seed).
+
+  VALIDATION cap-norm-ham yayilimi = 0.020
+  -> Z9'un gerekcesi uc seed'de de ayakta.
+
+  NOT: Bu script test blogunda HICBIR KARAR ALMAZ. Model secimi Z9'da
+  validation'da yapildi ve degistirilmedi.
+

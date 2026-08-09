@@ -1,0 +1,93 @@
+
+==============================================================================
+0. KUNYE
+==============================================================================
+pandapower 3.4.0 | numpy 2.3.5 | python 3.13.5
+cvxpy 1.9.1 | numba=True
+
+fider mv_oberrhein | k*=2.859375 | 108 MV bara | batarya bara 147
+P_MAX 8.00 MW | CAP 16.00 MWh | ETA 0.94868 | dt 0.50 | w_econ 1.0 | H 48
+dilim 13800:16229 (2429 adim) | LO 0.95 HI 1.05 MARGIN 0.005
+A7 npz k* tutarliligi -> GECTI
+A8 safe layer <-> VM_BASE: |fark| = 0.000e+00 -> GECTI
+
+==============================================================================
+KOL: NAIVE  (daily-naive)
+==============================================================================
+A9 tahmin matrisi sekli (16230, 48) (bek (16230, 48)) -> GECTI
+  300/2429  (107 adim/dk, kalan ~20.0 dk)
+  600/2429  (114 adim/dk, kalan ~16.1 dk)
+  900/2429  (115 adim/dk, kalan ~13.3 dk)
+  1200/2429  (117 adim/dk, kalan ~10.5 dk)
+  1500/2429  (117 adim/dk, kalan ~7.9 dk)
+  1800/2429  (119 adim/dk, kalan ~5.3 dk)
+  2100/2429  (119 adim/dk, kalan ~2.8 dk)
+  2400/2429  (119 adim/dk, kalan ~0.2 dk)
+
+  ihlal 7.49%  (182 adim; dusuk voltaj 0) | kar 43394.1 EUR
+  saturated 182
+  ihlal ayristirmasi (totoloji degil, IS 3 olcumune karsi):
+    UZAMSAL   (hicbir gucle giderilemez) :   40  (22.0%)
+    SOC/GUC   (o an kapasite yetmedi)    :  142  (78.0%)
+    BEKLENMEDIK                          :    0  (0.0%)
+    ihlalli adimlarda mevcut sarj gucu p_hi: ort 0.20 / P_MAX 8.00 MW
+  SOC ort 7.46 MWh (47% dolu) | yazildi: <repo>\gg2\data\ob8_naive.npz
+
+==============================================================================
+KOL: NWP  (NWP cap-norm (lgbm, alpha=0.799))
+==============================================================================
+A9 tahmin matrisi sekli (16230, 48) (bek (16230, 48)) -> GECTI
+  300/2429  (143 adim/dk, kalan ~14.9 dk)
+  600/2429  (132 adim/dk, kalan ~13.9 dk)
+  900/2429  (128 adim/dk, kalan ~11.9 dk)
+  1200/2429  (127 adim/dk, kalan ~9.7 dk)
+  1500/2429  (126 adim/dk, kalan ~7.4 dk)
+  1800/2429  (130 adim/dk, kalan ~4.8 dk)
+  2100/2429  (133 adim/dk, kalan ~2.5 dk)
+  2400/2429  (133 adim/dk, kalan ~0.2 dk)
+
+  ihlal 6.34%  (154 adim; dusuk voltaj 0) | kar 45609.7 EUR
+  saturated 154
+  ihlal ayristirmasi (totoloji degil, IS 3 olcumune karsi):
+    UZAMSAL   (hicbir gucle giderilemez) :   38  (24.7%)
+    SOC/GUC   (o an kapasite yetmedi)    :  116  (75.3%)
+    BEKLENMEDIK                          :    0  (0.0%)
+    ihlalli adimlarda mevcut sarj gucu p_hi: ort 0.09 / P_MAX 8.00 MW
+  SOC ort 7.20 MWh (45% dolu) | yazildi: <repo>\gg2\data\ob8_nwp.npz
+
+==============================================================================
+KOL: ORACLE  (solar-ORACLE)
+==============================================================================
+A9 tahmin matrisi sekli (16230, 48) (bek (16230, 48)) -> GECTI
+  300/2429  (121 adim/dk, kalan ~17.6 dk)
+  600/2429  (119 adim/dk, kalan ~15.4 dk)
+  900/2429  (118 adim/dk, kalan ~12.9 dk)
+  1200/2429  (120 adim/dk, kalan ~10.3 dk)
+  1500/2429  (119 adim/dk, kalan ~7.8 dk)
+  1800/2429  (120 adim/dk, kalan ~5.2 dk)
+  2100/2429  (121 adim/dk, kalan ~2.7 dk)
+  2400/2429  (121 adim/dk, kalan ~0.2 dk)
+
+  ihlal 6.30%  (153 adim; dusuk voltaj 0) | kar 46266.5 EUR
+  saturated 153
+  ihlal ayristirmasi (totoloji degil, IS 3 olcumune karsi):
+    UZAMSAL   (hicbir gucle giderilemez) :   40  (26.1%)
+    SOC/GUC   (o an kapasite yetmedi)    :  113  (73.9%)
+    BEKLENMEDIK                          :    0  (0.0%)
+    ihlalli adimlarda mevcut sarj gucu p_hi: ort 0.17 / P_MAX 8.00 MW
+  SOC ort 7.37 MWh (46% dolu) | yazildi: <repo>\gg2\data\ob8_oracle.npz
+
+==============================================================================
+OZET - mv_oberrhein
+==============================================================================
+kontrolsuz (batarya yok, IS 2): 15.11%
+
+kol      ihlal%    kar EUR     uzamsal   SOC/guc   solar tahmini
+naive    7.49      43394.1     40        142       daily-naive
+nwp      6.34      45609.7     38        116       NWP cap-norm (lgbm, alpha=0.799)
+oracle   6.30      46266.5     40        113       solar-ORACLE
+
+naive - NWP = +1.15 puan  (SEVIYE FARKI - HUKUM DEGIL)
+Hukum sadece eslestirilmis gunluk-blok bootstrap ile verilir.
+
+BITTI.

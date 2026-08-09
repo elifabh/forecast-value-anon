@@ -1,0 +1,72 @@
+==========================================================================
+[1] HATA CUBUKLARI - gunluk-blok esli bootstrap (test blogu)
+==========================================================================
+  naive  : ihlal  11.28% | kar     9681 EUR
+  oracle : ihlal   9.14% | kar    10574 EUR
+  nwp    : ihlal   9.80% | kar    10248 EUR
+
+  esli bootstrap (10000 tekrar, 48-adimlik gunluk bloklar):
+
+  YAN GOZLEM 1 (oracle vs NWP)
+    ihlal farki :   -0.62 pp   SE  0.40  ->  1.6 SE  [GURULTU OLABILIR]
+    kar farki   :    +368 EUR  SE   567  ->  0.6 SE  [GURULTU OLABILIR]
+
+  ANA BULGU (naive vs NWP)
+    ihlal farki :   +1.54 pp   SE  0.72  ->  2.1 SE  [GERCEK]
+    kar farki   :    -553 EUR  SE   714  ->  0.8 SE  [GURULTU OLABILIR]
+
+  ON-KAYITLI OKUMA:
+    - 'GURULTU OLABILIR' cikan hicbir fark makalede yorumlanmaz;
+      null sonuc olarak durustce raporlanir.
+    - Ana bulgunun ihlal farki gurultuyse TUM hikaye degisir (beklenmiyor;
+      plasebo testi zaten icerik etkisini gosterdi, ama olcelim).
+
+==========================================================================
+[2] KESIN TEST - w_econ supurmesi, MUKEMMEL fiyat + MUKEMMEL solar
+==========================================================================
+  Tahmin hatasi SIFIR. Ters cephe yine cikarsa sebep tahmin hatasi DEGIL.
+  Referans (kusurlu fiyatla, onceki kosum):
+    w=1: 2.08%/12414 | w=100: 3.25%/12510 | w=300: 5.21%/11433 | w=1000: 5.96%/9592
+
+  --- w_econ=1 kosuluyor...
+      w=1: 800/2400
+      w=1: 1600/2400
+      w=1: 2400/2400
+      w=1: ihlal 1.58% | kar 15308 EUR | L1 8.8 MW | override 81 | SOC-sinir 667
+  --- w_econ=100 kosuluyor...
+      w=100: 800/2400
+      w=100: 1600/2400
+      w=100: 2400/2400
+      w=100: ihlal 2.83% | kar 15633 EUR | L1 138.9 MW | override 484 | SOC-sinir 671
+  --- w_econ=300 kosuluyor...
+      w=300: 800/2400
+      w=300: 1600/2400
+      w=300: 2400/2400
+      w=300: ihlal 4.71% | kar 14478 EUR | L1 696.6 MW | override 1134 | SOC-sinir 612
+  --- w_econ=1000 kosuluyor...
+      w=1000: 800/2400
+      w=1000: 1600/2400
+      w=1000: 2400/2400
+      w=1000: ihlal 5.08% | kar 11912 EUR | L1 1856.9 MW | override 1337 | SOC-sinir 756
+
+==========================================================================
+SONUC TABLOSU (mukemmel fiyat + mukemmel solar)
+==========================================================================
+    w_econ   ihlal%   kar(EUR)   L1(MW)  override  SOC-sinir
+         1     1.58      15308      8.8        81        667
+       100     2.83      15633    138.9       484        671
+       300     4.71      14478    696.6      1134        612
+      1000     5.08      11912   1856.9      1337        756
+
+  ON-KAYITLI HUKUM [2]:
+    Ters cephe MUKEMMEL fiyatla da SURUYOR.
+    -> Sebep tahmin hatasi DEGIL. Kurulum artefakti (agirlik olcegi +
+       projeksiyon). w_econ supurmesi 'bulgu' olarak RAPORLANMAZ;
+       sadece metodolojik not olur. Benim 'fiyat tahmini' hipotezim OLDU.
+
+  ON-KAYITLI OKUMA [3] (projeksiyon tanisi):
+    L1 diverjansi w ile buyuyor (9 -> 1857 MW).
+    -> Safe layer agresif planlari eziyor; 'planlanan kar gerceklesmiyor'
+       mekanizmasi (research item f) DESTEKLENDI.
+
+Gece paketi bitti.

@@ -1,0 +1,80 @@
+
+==============================================================================
+0. KUNYE
+==============================================================================
+numpy 2.3.5 | python 3.13.5
+gun 48 adim | 50 gun | 10000 tekrar | seed 12345 | RNG numpy default_rng
+cipa blogu T0=13800 | kol blogu T0=13800 | dosya oneki ob8_
+
+==============================================================================
+1. CIPA B1 - case33bw MANSETI YENIDEN URET
+==============================================================================
+  naive   seviye (50 gun): ihlal 11.21% | kar 9640.4 EUR
+  nwp     seviye (50 gun): ihlal 9.67% | kar 10193.7 EUR
+  oracle  seviye (50 gun): ihlal 9.04% | kar 10561.7 EUR
+
+  naive - NWP      gozlenen     +1.54 puan | boot ort     +1.54  SD    0.72 | %95 GA [   +0.29,    +3.12] | carpik +0.48 | P(<=0) 0.005
+
+  DEVIR v8 3.1 : +1.54 | SD 0.72 | GA [0.29, 3.12]
+  B1 -> GECTI
+  NWP - oracle     gozlenen     +0.62 puan | boot ort     +0.62  SD    0.40 | %95 GA [   -0.13,    +1.42] | carpik +0.13 | P(<=0) 0.060
+  naive - NWP kar  gozlenen    -11.07 EUR  | boot ort    -11.12  SD   14.44 | %95 GA [  -38.83,   +17.76] | carpik +0.03 | P(<=0) 0.784
+
+==============================================================================
+2. mv_oberrhein - SEVIYELER
+==============================================================================
+  naive   50 gun: ihlal 7.42% | kar 42712.4 EUR   (tam blok ayrica ayri raporlanir)
+  nwp     50 gun: ihlal 6.21% | kar 44795.5 EUR   (tam blok ayrica ayri raporlanir)
+  oracle  50 gun: ihlal 6.29% | kar 45775.6 EUR   (tam blok ayrica ayri raporlanir)
+
+==============================================================================
+3. mv_oberrhein - IHLAL FARKLARI
+==============================================================================
+  naive - NWP      gozlenen     +1.21 puan | boot ort     +1.21  SD    0.43 | %95 GA [   +0.46,    +2.17] | carpik +0.45 | P(<=0) 0.000
+  naive - oracle   gozlenen     +1.12 puan | boot ort     +1.13  SD    0.53 | %95 GA [   +0.04,    +2.12] | carpik -0.21 | P(<=0) 0.023
+  NWP - oracle     gozlenen     -0.08 puan | boot ort     -0.08  SD    0.51 | %95 GA [   -1.17,    +0.83] | carpik -0.30 | P(<=0) 0.549
+
+==============================================================================
+4. mv_oberrhein - KAR FARKLARI
+==============================================================================
+  naive - NWP      gozlenen    -41.66 EUR  | boot ort    -41.49  SD   80.94 | %95 GA [ -195.08,  +120.25] | carpik +0.12 | P(<=0) 0.699
+  naive - oracle   gozlenen    -61.27 EUR  | boot ort    -60.15  SD   88.31 | %95 GA [ -232.60,  +112.25] | carpik +0.01 | P(<=0) 0.749
+  NWP - oracle     gozlenen    -19.60 EUR  | boot ort    -18.67  SD   57.28 | %95 GA [ -133.75,   +93.35] | carpik -0.04 | P(<=0) 0.623
+
+==============================================================================
+4b. PLASEBO (varsa)
+==============================================================================
+  placebo 50 gun: ihlal 8.50% | kar 43560.0 EUR
+  plasebo - NWP    gozlenen     +2.29 puan | boot ort     +2.29  SD    0.82 | %95 GA [   +0.88,    +4.08] | carpik +0.48 | P(<=0) 0.000
+  plasebo - naive  gozlenen     +1.08 puan | boot ort     +1.08  SD    0.69 | %95 GA [   -0.04,    +2.67] | carpik +0.65 | P(<=0) 0.033
+
+  case33bw p7 referansi: +1.42 puan, %95 GA [+0.33, +2.67]
+
+==============================================================================
+5. HUKUM
+==============================================================================
+ON-KAYITLI CUMLE (ihlal, naive - NWP):
+  Etki ikinci fiderde de gozleniyor: ihlaller 7.42%'den 6.21%'ye
+  dusuyor, fark 1.21 puan, %95 GA [0.46, 2.17], P(fark<=0)=0.000.
+
+KAR (naive - NWP):
+  Kar farki OLCULEMEDI: -42 EUR, %95 GA [-195, 120].
+  Veri ne kazanci ne kaybi destekliyor.
+
+MUKEMMEL ONGORUYE BOSLUK (NWP - oracle):
+  COZULMUYOR: -0.08 puan, %95 GA [-1.17, 0.83]. Gun-oncesi tahmin,
+  mukemmel solar ongorusunden olculebilir sekilde kotu DEGIL.
+
+PLASEBO (icerik atfi):
+  Ikinci fiderde de etki tahminin ICERIGINDEN geliyor: matrisi
+  yedi gun kaydirmak farki 2.29 puan kotulestiriyor, %95 GA
+  [0.88, 4.08].
+
+IKI FIDER YAN YANA (ihlal, naive - NWP):
+  case33bw     : +1.54 puan, GA [0.29, 3.12]
+  mv_oberrhein : +1.21 puan, GA [0.46, 2.17]
+
+SINIR: iki fider AYNI Irlanda serisini ve AYNI test blogunu kullaniyor.
+Bagimsiz tekrar DEGIL; ayni gunlerde farkli sebeke.
+
+BITTI.

@@ -1,0 +1,57 @@
+============================================================================
+Z16 ADIM 2 - KAYDIRILMIS TAHMINLERIN BECERISI
+============================================================================
+  test blogu 13800:16229 | K=48
+
+  CIPA: gercek NWP alpha = 0.799  (beklenen 0.799)
+  -> GECTI
+
+============================================================================
+KAYDIRILMIS MATRISLERIN BECERISI (test blogu)
+============================================================================
+  kol              MAE    alpha    kuyruk   beceri
+  --------------------------------------------------------------
+  NWP           0.1801    0.799     0.926   naive'i yeniyor
+  plac3         0.2899    1.285     1.313   naive'den KOTU
+  plac7         0.3296    1.461     1.355   naive'den KOTU
+  plac14        0.2911    1.291     1.312   naive'den KOTU
+  plac21        0.3691    1.636     1.482   naive'den KOTU
+
+============================================================================
+SEVIYELER - alpha'ya gore siralanmis
+============================================================================
+  kol           alpha    ihlal %     kar EUR
+  --------------------------------------------
+  oracle        0.000       9.14     10573.8
+  NWP           0.799       9.80     10248.0
+  naive         1.000      11.28      9681.4
+  plac3         1.285      10.21      9971.9
+  plac14        1.291      11.77      9600.8
+  plac7         1.461      11.16      9496.0
+  plac21        1.636      12.39      9598.2
+
+============================================================================
+BITISIK CIFTLER (alpha sirasinda), eslestirilmis bootstrap
+============================================================================
+  cift                     fark pp      SE    kat  hukum
+  --------------------------------------------------------------
+  NWP - oracle               +0.62    0.40    1.6  yorumlanmaz
+  naive - NWP                +1.54    0.72    2.1  GERCEK
+  plac3 - naive              -1.08    0.67    1.6  yorumlanmaz
+  plac14 - plac3             +1.58    0.72    2.2  GERCEK
+  plac7 - plac14             -0.62    0.75    0.8  yorumlanmaz
+  plac21 - plac7             +1.25    0.77    1.6  yorumlanmaz
+
+============================================================================
+ON-KAYITLI HUKUM
+============================================================================
+  HUKUM (B): alpha_3 = 1.285 >= 1
+    -> Kaydirilmis tahminin BECERISI YOK ama ihlali dusuruyor.
+       CIDDI UYARI. Kazancin bir kismi tahmin iceriginden degil.
+       Aynen yazilir, ACIKLAMA UYDURULMAZ.
+
+  MONOTONLUK (alpha artarken ihlal artiyor mu):
+    seviyeler bazinda: MONOTON DEGIL
+    NOT: yukaridaki ciftlerden 2 SE'yi asmayanlar YORUMLANMAZ.
+    Tum bitisik ciftler yorumlanamiyorsa siralama okunmaz.
+

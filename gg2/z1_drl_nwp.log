@@ -1,0 +1,41 @@
+==========================================================================
+Z1 - DRL politikasi + NWP solar tahmini (yeniden egitim YOK)
+==========================================================================
+  env: N=16230 | H_fc=48 | test dilimi 13800:16229
+
+  KANIT (1) NWP sekli (16230, 48) | env solar_fc sekli (16230, 48)
+  KANIT (2) ufuk esit (48)
+  KANIT (3) test dilimi ort (ufuk 1): mevcut 0.8525 | NWP 0.8639 | oran 1.013
+  -> uc kanit da tuttu.
+
+  --- gru (CIPA) kosuluyor...
+      gru: 8.65% (210 adet, 2429 adim)
+      CIPA: beklenen 8.65 | fark 0.00 puan -> TUTTU
+
+  --- nwp kosuluyor...
+      nwp: 8.52% (207 adet)
+
+==========================================================================
+SONUC - DRL politikasi, tek degisken solar tahmini
+==========================================================================
+  kosul        ihlal%
+  gru            8.65
+  nwp            8.52
+
+  fark (gru - nwp) = +0.12 +/- 0.09 puan  (1.4 SE)
+
+  REFERANSLAR:
+    sweep_forecast: perfect 8.52 | gru 8.65 | noise 8.60 | persist 8.52 |
+                    shuffle(cop) 8.52   -> aralik 0.13, seed yayilimi +/-0.14
+    MPC'de ayni tahmin yukseltmesi: 11.28 -> 9.80 (1.54 +/- 0.72, 2.1 SE)
+
+  ON-KAYITLI HUKUM:
+    1.4 SE < 2 -> POLITIKA BU BILGIYI KULLANMIYOR.
+    Esit-bilgi itirazi cevaplandi: DRL'e MPC ile AYNI tahmin verildi,
+    olculebilir fayda saglamadi. Makaleye tek cumleyle girer.
+
+  SINIR (metne yazilacak): politika NWP ile YENIDEN EGITILMEDI.
+  Bu test 'mevcut politika bu bilgiyi kullanabiliyor mu' sorusunu
+  cevaplar; 'NWP ile egitilse ne olurdu' sorusunu CEVAPLAMAZ.
+  Ayrica tek model dosyasi (models/sac_actor_best_gru.pt), cok-seed degil.
+

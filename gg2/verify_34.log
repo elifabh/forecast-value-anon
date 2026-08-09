@@ -1,0 +1,47 @@
+==========================================================================
+[3] PLASEBO - EN KESKIN TEST (test blo�u)
+==========================================================================
+  plasebo: NWP matrisi 336 adim (7 gun) geri kaydirildi
+  ayni istatistik, ayni gunluk sekil, YANLIS hava
+  ON-KAYIT: ihlal naive'e (%11.28) geri donmeli.
+            %9.80 civarinda kalirsa -> 9.80 SAHTE, sizinti var.
+
+      plasebo: 800/2429
+      plasebo: 1600/2429
+      plasebo: 2400/2429
+
+  naive (Tablo 1)          %11.28 |    9681 EUR
+  PLASEBO (kaydirilmis)    %11.16 |    9496 EUR   <-- BU
+  GERCEK NWP               % 9.80 |   10248 EUR
+
+  HUKUM:
+    GECTI - plasebo naive'e yakin (%11.16), NWP'ye degil.
+    Iyilesme tahmin ICERIGINDEN geliyor. 9.80 GERCEK.
+
+==========================================================================
+[4] ORACLE-KAR ANATOMISI (yaz blo�u 0:2400)
+==========================================================================
+  SORU: yaz blo�unda NWP neden oracle'dan KARLI (12798 vs 12414)?
+  HIPOTEZ: oracle daha savunmaci sarj ediyor -> az ihlal, az kar.
+  TEST: throughput ve solar-saat SOC'u kiyasla. Oracle daha cok sarj edip
+        solar saatlerde daha DUSUK SOC tutuyorsa hipotez dogrulanir.
+
+  --- oracle kosuluyor...
+      oracle: 800/2400
+      oracle: 1600/2400
+      oracle: 2400/2400
+  --- NWP kosuluyor...
+      NWP: 800/2400
+      NWP: 1600/2400
+      NWP: 2400/2400
+
+               ihlal%      kar  throughput   SOC ort  SOC solar-saat
+  oracle         2.08    12414       626.7     2.724           4.007
+  NWP            2.38    12798       620.5     2.477           3.627
+
+  HUKUM:
+    Oracle daha cok sarj/desarj (627 vs 621) ve/veya solar saatlerde daha dusuk SOC (4.007 vs 3.627).
+    -> HIPOTEZ DOGRULANDI: oracle savunmaci davraniyor, kardan veriyor.
+       Bu bir bug degil, agirlikli-toplam amacin Pareto konumu.
+
+Dogrulama paketi bitti.

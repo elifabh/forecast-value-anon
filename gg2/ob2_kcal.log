@@ -1,0 +1,231 @@
+
+==============================================================================
+0. KUNYE / ORTAM
+==============================================================================
+pandapower : 3.4.0
+numpy      : 2.3.5
+pandas     : 2.3.3
+python     : 3.13.5
+numba      : kurulu (runpp numba=True)
+V_HI=1.050  V_LO=0.950  THERM_LIMIT=100.0%
+K_GRID=[1.0, 1.5, 2.0, 2.25, 2.5, 2.75, 3.0, 3.25, 3.5]  BISECT_ITERS=3
+
+==============================================================================
+1. SERILER - mpc_econ_voltage_pareto'dan IMPORT
+==============================================================================
+NOT: bu import cvxpy + case33bw + forecast_matrix yukler, yavas olabilir.
+     Kok klasorden calistirilmazsa 'data/aligned_30min_joint.csv'
+     bulunamaz ve HATA verir - bu beklenen davranistir.
+
+M.N        : 16230
+M.SPLIT    : 13800
+M.SP       : 3.000 MW (case33bw solar tepe olcegi)
+M.LS       : 0.500  (case33bw yuk yarilama - BURADA KULLANILMAZ)
+pencere    : 13800:16229  (2429 adim)
+solar_norm : egitim tepe 1.0000 | test ort 0.2881 | test tepe 1.2497
+dmult      : test min 0.7561 | ort 0.9577 | maks 1.1969
+NaN kontrol: solar_norm 0 | dmult 0
+
+==============================================================================
+2. CIPA A1 + A2 - SERI KIMLIGI
+==============================================================================
+A1 pencere : SPLIT=13800 (beklenen 13800), adim=2429 (beklenen 2429) -> GECTI
+A2 solar   : ort 0.8642 MW (beklenen 0.8640) | tepe 3.7492 MW (beklenen 3.7490) -> GECTI
+
+==============================================================================
+3. mv_oberrhein KURULUMU
+==============================================================================
+bilesen 0  : 109 bara | olcum kumesi 108 bara (20 kV)
+trafo idx  : 142  sn=25.0 MVA
+hat        : 109 adet
+PV nominal : 12.1657 MW (bilesen 0, 93 sgen)
+yuk        : 20.2740 MW (bilesen 0, scaling=0.6, dmult=1)
+ruzgar     : YOK (karar K1)
+batarya    : YOK (karar K2)
+
+capraz kontrol referansi: case33bw PV/yuk = 1.61 -> esdeger k = 2.68
+
+==============================================================================
+4. CIPA A3 - gg2_ob1_ksweep.py ILE STATIK ESLESME
+==============================================================================
+k=4.0, solar_norm=1.0, dmult=1.0
+  vmax  : 1.08218  (beklenen 1.08218, fark 0.00000)
+  ihlal : 38 bara (beklenen 38)
+  trafo : 113.0%   hat: 107.4%
+A3 -> GECTI
+
+==============================================================================
+CIPA OZETI
+==============================================================================
+A1 GECTI | A2 GECTI | A3 GECTI
+Uc cipa da gecti. Kalibrasyona gecilir.
+
+==============================================================================
+5a. REFERANS KOSUMU - k=0 (PV YOK)
+==============================================================================
+Sebekenin PV OLMADAN termal tabani. Ithalat yonu asimini burada olcuyoruz.
+    k=0.000 (k=0 ref)  500/2429  (1974 adim/dk, kalan ~1.0 dk)
+    k=0.000 (k=0 ref)  1000/2429  (1947 adim/dk, kalan ~0.7 dk)
+    k=0.000 (k=0 ref)  1500/2429  (2051 adim/dk, kalan ~0.5 dk)
+    k=0.000 (k=0 ref)  2000/2429  (2124 adim/dk, kalan ~0.2 dk)
+  ithalat trafo en yuksek : 104.1%   (adim sayisi 2429)
+  ihracat adimi sayisi    : 0
+  asiri voltaj            : 0.00%   dusuk voltaj: 0.00%
+
+  NOT: trafo PV OLMADAN da yuzde 100'u asiyor. Bu, Alman fider
+  yukunun Irlanda talep sekliyle modulasyonundan gelir, PV'den DEGIL.
+  Makalede acikca yazilacak. Olcut ihracat yonune baglidir.
+
+==============================================================================
+5b. KABA IZGARA - ZAMAN SERISI
+==============================================================================
+Her k icin 2429 adim AC yuk akisi. Bu uzun surer.
+
+  --> k=1.00 baslatiliyor (PV tepe 15.20 MW = k*1.2497*12.1657)
+    k=1.000  500/2429  (1907 adim/dk, kalan ~1.0 dk)
+    k=1.000  1000/2429  (1932 adim/dk, kalan ~0.7 dk)
+    k=1.000  1500/2429  (1933 adim/dk, kalan ~0.5 dk)
+    k=1.000  2000/2429  (1935 adim/dk, kalan ~0.2 dk)
+  k=1.000 | IHRACAT trafo    nan% hat    nan% (0 adim) | ithalat trafo  102.9% | asiri  0.00% | dusuk  0.00% | vmax 1.0451 | TERMAL ASIM | 76 s
+
+  --> k=1.50 baslatiliyor (PV tepe 22.80 MW = k*1.2497*12.1657)
+    k=1.500  500/2429  (1951 adim/dk, kalan ~1.0 dk)
+    k=1.500  1000/2429  (1957 adim/dk, kalan ~0.7 dk)
+    k=1.500  1500/2429  (1954 adim/dk, kalan ~0.5 dk)
+    k=1.500  2000/2429  (1948 adim/dk, kalan ~0.2 dk)
+  k=1.500 | IHRACAT trafo   22.4% hat   30.6% (61 adim) | ithalat trafo  102.7% | asiri  0.74% | dusuk  0.00% | vmax 1.0564 | TERMAL OK | 75 s
+
+  --> k=2.00 baslatiliyor (PV tepe 30.41 MW = k*1.2497*12.1657)
+    k=2.000  500/2429  (1784 adim/dk, kalan ~1.1 dk)
+    k=2.000  1000/2429  (1838 adim/dk, kalan ~0.8 dk)
+    k=2.000  1500/2429  (1850 adim/dk, kalan ~0.5 dk)
+    k=2.000  2000/2429  (1852 adim/dk, kalan ~0.2 dk)
+  k=2.000 | IHRACAT trafo   50.2% hat   53.5% (221 adim) | ithalat trafo  102.6% | asiri  4.45% | dusuk  0.00% | vmax 1.0680 | TERMAL OK | 76 s
+
+  --> k=2.25 baslatiliyor (PV tepe 34.21 MW = k*1.2497*12.1657)
+    k=2.250  500/2429  (2345 adim/dk, kalan ~0.8 dk)
+    k=2.250  1000/2429  (2356 adim/dk, kalan ~0.6 dk)
+    k=2.250  1500/2429  (2334 adim/dk, kalan ~0.4 dk)
+    k=2.250  2000/2429  (2325 adim/dk, kalan ~0.2 dk)
+  k=2.250 | IHRACAT trafo   64.1% hat   65.6% (337 adim) | ithalat trafo  102.6% | asiri  7.37% | dusuk  0.00% | vmax 1.0731 | TERMAL OK | 63 s
+
+  --> k=2.50 baslatiliyor (PV tepe 38.01 MW = k*1.2497*12.1657)
+    k=2.500  500/2429  (2359 adim/dk, kalan ~0.8 dk)
+    k=2.500  1000/2429  (2367 adim/dk, kalan ~0.6 dk)
+    k=2.500  1500/2429  (2338 adim/dk, kalan ~0.4 dk)
+    k=2.500  2000/2429  (2221 adim/dk, kalan ~0.2 dk)
+  k=2.500 | IHRACAT trafo   78.0% hat   77.7% (430 adim) | ithalat trafo  102.5% | asiri 10.54% | dusuk  0.00% | vmax 1.0777 | TERMAL OK | 67 s
+
+  --> k=2.75 baslatiliyor (PV tepe 41.81 MW = k*1.2497*12.1657)
+    k=2.750  500/2429  (1910 adim/dk, kalan ~1.0 dk)
+    k=2.750  1000/2429  (1941 adim/dk, kalan ~0.7 dk)
+    k=2.750  1500/2429  (1946 adim/dk, kalan ~0.5 dk)
+    k=2.750  2000/2429  (1942 adim/dk, kalan ~0.2 dk)
+  k=2.750 | IHRACAT trafo   92.8% hat   89.7% (523 adim) | ithalat trafo  102.5% | asiri 13.87% | dusuk  0.00% | vmax 1.0819 | TERMAL OK | 75 s
+
+  --> k=3.00 baslatiliyor (PV tepe 45.61 MW = k*1.2497*12.1657)
+    k=3.000  500/2429  (1955 adim/dk, kalan ~1.0 dk)
+    k=3.000  1000/2429  (1912 adim/dk, kalan ~0.7 dk)
+    k=3.000  1500/2429  (1913 adim/dk, kalan ~0.5 dk)
+    k=3.000  2000/2429  (2006 adim/dk, kalan ~0.2 dk)
+  k=3.000 | IHRACAT trafo  107.8% hat  101.8% (586 adim) | ithalat trafo  102.4% | asiri 16.80% | dusuk  0.00% | vmax 1.0857 | TERMAL ASIM | 70 s
+
+  --> k=3.25 baslatiliyor (PV tepe 49.41 MW = k*1.2497*12.1657)
+    k=3.250  500/2429  (2398 adim/dk, kalan ~0.8 dk)
+    k=3.250  1000/2429  (2402 adim/dk, kalan ~0.6 dk)
+    k=3.250  1500/2429  (2403 adim/dk, kalan ~0.4 dk)
+    k=3.250  2000/2429  (2404 adim/dk, kalan ~0.2 dk)
+  k=3.250 | IHRACAT trafo  122.8% hat  113.9% (658 adim) | ithalat trafo  102.4% | asiri 19.51% | dusuk  0.00% | vmax 1.0891 | TERMAL ASIM | 61 s
+
+  --> k=3.50 baslatiliyor (PV tepe 53.21 MW = k*1.2497*12.1657)
+    k=3.500  500/2429  (2348 adim/dk, kalan ~0.8 dk)
+    k=3.500  1000/2429  (2375 adim/dk, kalan ~0.6 dk)
+    k=3.500  1500/2429  (2378 adim/dk, kalan ~0.4 dk)
+    k=3.500  2000/2429  (2384 adim/dk, kalan ~0.2 dk)
+  k=3.500 | IHRACAT trafo  137.8% hat  126.0% (728 adim) | ithalat trafo  102.3% | asiri 22.77% | dusuk  0.00% | vmax 1.0920 | TERMAL ASIM | 61 s
+
+==============================================================================
+6. k* ICIN IKIYE BOLME
+==============================================================================
+baslangic araligi: k_ok=2.750  k_asim=1.000
+
+  --> ikiye bolme 1/3, k=1.875
+    k=1.875 (bisect)  500/2429  (2382 adim/dk, kalan ~0.8 dk)
+    k=1.875 (bisect)  1000/2429  (2398 adim/dk, kalan ~0.6 dk)
+    k=1.875 (bisect)  1500/2429  (2390 adim/dk, kalan ~0.4 dk)
+    k=1.875 (bisect)  2000/2429  (2269 adim/dk, kalan ~0.2 dk)
+  k=1.875 | IHRACAT trafo   43.3% hat   47.5% (176 adim) | ithalat trafo  102.7% | asiri  3.50% | dusuk  0.00% | vmax 1.0653 | TERMAL OK | 66 s
+
+  --> ikiye bolme 2/3, k=1.438
+    k=1.438 (bisect)  500/2429  (1946 adim/dk, kalan ~1.0 dk)
+    k=1.438 (bisect)  1000/2429  (1935 adim/dk, kalan ~0.7 dk)
+    k=1.438 (bisect)  1500/2429  (1947 adim/dk, kalan ~0.5 dk)
+    k=1.438 (bisect)  2000/2429  (1945 adim/dk, kalan ~0.2 dk)
+  k=1.438 | IHRACAT trafo   19.0% hat   27.7% (49 adim) | ithalat trafo  102.8% | asiri  0.49% | dusuk  0.00% | vmax 1.0549 | TERMAL OK | 75 s
+
+  --> ikiye bolme 3/3, k=1.219
+    k=1.219 (bisect)  500/2429  (1912 adim/dk, kalan ~1.0 dk)
+    k=1.219 (bisect)  1000/2429  (1932 adim/dk, kalan ~0.7 dk)
+    k=1.219 (bisect)  1500/2429  (1919 adim/dk, kalan ~0.5 dk)
+    k=1.219 (bisect)  2000/2429  (1893 adim/dk, kalan ~0.2 dk)
+  k=1.219 | IHRACAT trafo    7.3% hat   18.2% (11 adim) | ithalat trafo  102.8% | asiri  0.00% | dusuk  0.00% | vmax 1.0492 | TERMAL OK | 77 s
+
+k* = 1.219   (cozunurluk -0.219)
+
+==============================================================================
+7. TAM TABLO
+==============================================================================
+IHRACAT yonu = trafo p_hv < 0. Termal olcut SADECE bu sutunlara bakar.
+
+k       PV_tepe   ihr_trafo% ihr_hat%  ith_trafo% ihr_adim asiri%   dusuk%   vmax     termal
+0.000   0.00      nan        nan       104.1      0        0.00     0.00     1.0374   REF
+1.000   15.20     nan        nan       102.9      0        0.00     0.00     1.0451   ASIM
+1.219   18.53     7.3        18.2      102.8      11       0.00     0.00     1.0492   OK
+1.438   21.85     19.0       27.7      102.8      49       0.49     0.00     1.0549   OK
+1.500   22.80     22.4       30.6      102.7      61       0.74     0.00     1.0564   OK
+1.875   28.51     43.3       47.5      102.7      176      3.50     0.00     1.0653   OK
+2.000   30.41     50.2       53.5      102.6      221      4.45     0.00     1.0680   OK
+2.250   34.21     64.1       65.6      102.6      337      7.37     0.00     1.0731   OK
+2.500   38.01     78.0       77.7      102.5      430      10.54    0.00     1.0777   OK
+2.750   41.81     92.8       89.7      102.5      523      13.87    0.00     1.0819   OK
+3.000   45.61     107.8      101.8     102.4      586      16.80    0.00     1.0857   ASIM
+3.250   49.41     122.8      113.9     102.4      658      19.51    0.00     1.0891   ASIM
+3.500   53.21     137.8      126.0     102.3      728      22.77    0.00     1.0920   ASIM
+
+==============================================================================
+8. HUKUM
+==============================================================================
+k*                       : 1.219
+PV tepe (test blogu)     : 18.53 MW  (bilesen 0 yuku 20.27 MW)
+PV_tepe / yuk            : 0.91   (case33bw: 1.61)
+IHRACAT trafo en yuksek  : 7.3%  (adim 15875, 11 ihracat adimi)
+IHRACAT hat en yuksek    : 18.2%
+ithalat trafo en yuksek  : 102.8%  (PV disi, k=0'da 104.1%)
+
+KONTROLSUZ (batarya yok) ihlal oranlari:
+  asiri voltaj  : 0.00%
+  dusuk voltaj  : 0.00%
+  herhangi biri : 0.00%
+  vmax barasi 147 olan adimlarin orani: 0.0%
+
+Kiyas (case33bw, DEVIR v8): kontrolsuz do-nothing ~%22-23,
+naive MPC + safe layer %11.28. Oran kabaca yariya iniyor.
+
+ON-KAYITLI ISTISNA ATESLENDI: k*'da asiri voltaj adimi SIFIR.
+mv_oberrhein termal fizibil bir PV kurulumunda olculebilir asiri
+voltaj URETMIYOR. Ikinci fider plani yeniden degerlendirilmeli.
+
+SINIR: bu oran BATARYASIZ ve KONTROLSUZ ust sinirdir. Naive MPC +
+safe layer kolunda daha dusuk cikacaktir. Batarya desarjinin trafo
+uzerindeki etkisi bu olcute GIRMEDI, naive kolundan sonra olculecek.
+
+==============================================================================
+9. KAYIT
+==============================================================================
+yazildi: <repo>\gg2\data\ob2_kcal.csv  (13 satir)
+yazildi: <repo>\gg2\data\ob2_kcal_traj.npz  (52 dizi)
+
+CIPA A1/A2/A3 : GECTI / GECTI / GECTI
+k*            : 1.219
+
+BITTI.

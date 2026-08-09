@@ -1,0 +1,71 @@
+==============================================================================
+ORACLE-KAR ANOMALISI - blok 0:2400 (yaz 2025)
+==============================================================================
+
+[A] KAR ANATOMISI (w_econ=1.0)
+
+  --- oracle kosuluyor...
+      oracle: 800/2400
+      oracle: 1600/2400
+      oracle: 2400/2400
+      oracle: ihlal 2.08% | kar 12414 EUR
+  --- NWP kosuluyor...
+      NWP: 800/2400
+      NWP: 1600/2400
+      NWP: 2400/2400
+      NWP: ihlal 2.38% | kar 12798 EUR
+
+                                 oracle        NWP       fark
+  ihlal %                          2.08       2.38      -0.29
+  kar (EUR)                    12413.91   12798.45    -384.54
+  sarj enerjisi (MWh)            330.02     326.84      +3.18
+    ...solar saatlerde           233.67     236.62      -2.95
+  desarj enerjisi (MWh)          296.71     293.69      +3.03
+  sarj-agirlikli fiyat            74.07      72.15      +1.92
+  desarj-agirlikli fiyat         124.22     123.87      +0.35
+  sarj maliyeti (EUR)          24444.38   23580.83    +863.55
+  desarj geliri (EUR)          36858.29   36379.28    +479.01
+
+  kar farki (NWP - oracle) = +385 EUR
+    fazla sarj maliyetinden : +864 EUR
+    eksik desarj gelirinden : -479 EUR
+    toplam aciklanan        : +385 EUR (kar farkinin %100'i)
+
+  [A] HUKMU:
+    oracle solar saatlerde daha cok sarj ediyor mu (>%2)? HAYIR
+    anatomi kar farkini acikliyor mu (+/-%10)?          EVET
+    -> HIPOTEZ CURUDU. Mekanizma bu degil. [B] kesin cevabi verecek.
+
+==============================================================================
+[B] w_econ SUPURMESI - oracle'in Pareto onu (KESIN TEST)
+==============================================================================
+  Hedef: bir agirlikta oracle ihlal<=2.38% VE kar>=12798 EUR
+
+  --- oracle w_econ=3.0 kosuluyor...
+      oracle w=3.0: 800/2400
+      oracle w=3.0: 1600/2400
+      oracle w=3.0: 2400/2400
+      w=3.0: ihlal 2.08% | kar 12423 EUR
+  --- oracle w_econ=10.0 kosuluyor...
+      oracle w=10.0: 800/2400
+      oracle w=10.0: 1600/2400
+      oracle w=10.0: 2400/2400
+      w=10.0: ihlal 2.08% | kar 12418 EUR
+  --- oracle w_econ=30.0 kosuluyor...
+      oracle w=30.0: 800/2400
+      oracle w=30.0: 1600/2400
+      oracle w=30.0: 2400/2400
+      w=30.0: ihlal 2.17% | kar 12528 EUR
+
+    w_econ   ihlal%   kar(EUR)   NWP'yi yakaladi mi?
+       1.0     2.08      12414   hayir
+       3.0     2.08      12423   hayir
+      10.0     2.08      12418   hayir
+      30.0     2.17      12528   hayir
+        --     2.38      12798   <- NWP (w_econ=1.0)
+
+  [B] HUKMU:
+    KALDI - hicbir agirlikta oracle NWP'yi ikisinde birden yakalayamiyor.
+    NWP mukemmel-bilgili referansi GERCEKTEN domine ediyor. Bu aciklanamaz.
+    -> Oracle satiri tablodan CIKARILIR. Sebep bulunana kadar kullanilmaz.
+

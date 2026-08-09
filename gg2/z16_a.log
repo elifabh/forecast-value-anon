@@ -1,0 +1,52 @@
+==========================================================================
+Z16 - COKLU KAYDIRMALI PLASEBO
+==========================================================================
+  tahmin matrisi : gg2/data/nwp_solar_fc_capnorm.npz  shape (16230, 48)
+  dilim          : 13800:16229 (2429 adim)
+  kaydirmalar    : 7, 3 gun
+  ON-KAYIT esigi : %10.54  (naive 11.28 ile NWP 9.80 arasi orta nokta)
+  CIPA           : shift=7 -> %11.16 (+/- 0.15)
+  her kaydirma ~15 dk.
+
+==========================================================================
+KAYDIRMA 7 GUN (336 adim) kosuluyor...
+==========================================================================
+      plasebo7: 800/2429
+      plasebo7: 1600/2429
+      plasebo7: 2400/2429
+  ihlal 11.16%  |  kar 9496 EUR   -> gg2\data\placebo_shift7.npz
+
+==========================================================================
+KAYDIRMA 3 GUN (144 adim) kosuluyor...
+==========================================================================
+      plasebo3: 800/2429
+      plasebo3: 1600/2429
+      plasebo3: 2400/2429
+  ihlal 10.21%  |  kar 9972 EUR   -> gg2\data\placebo_shift3.npz
+
+==========================================================================
+OZET
+==========================================================================
+  kol                      ihlal %     kar EUR   taraf
+  --------------------------------------------------------------
+  naive (Tablo 1)            11.28      9681.0   -
+  plasebo 3 gun              10.21      9971.9   NWP TARAFI <- UYARI
+  plasebo 7 gun              11.16      9496.0   naive tarafi
+  GERCEK NWP                  9.80     10248.0   -
+
+==========================================================================
+CIPA
+==========================================================================
+  shift=7  beklenen 11.16 | olculen 11.16 | fark -0.00  -> GECTI
+
+==========================================================================
+ON-KAYITLI HUKUM
+==========================================================================
+  Esigin ALTINDA kalan kaydirma(lar): 3 gun (%10.21)
+  -> HUKUM (2): UYARI. Kazancin bir kismi tahmin iceriginden degil,
+     tahminin istatistiksel seklinden geliyor olabilir.
+     Bu aynen raporlanir. ACIKLAMA UYDURULMAZ.
+
+  NOT: bu bir SEVIYE kiyasidir. Hata cubuklari icin yorungeler
+  gg2/data/placebo_shift*.npz olarak kaydedildi; bootstrap ayri kosulur.
+

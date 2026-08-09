@@ -1,0 +1,40 @@
+==========================================================================
+IKI-BATARYA TABAN OLCUMU (perfect) - toplam solar 3.0, site basina 1.5
+==========================================================================
+mpc2_test import ediliyor...
+
+KANIT (1) gercek solar site-tepesi: 1.5000  (hedef 1.5)
+  -> tuttu. (perfect mod tahmin matrisi KULLANMAZ; fc olcegi konu disi)
+
+KUNYE + REFERANSLAR (ayni kurulum, onceki log'lardan):
+  naive                 : %3.09
+  NWP                   : %2.76
+  tek-batarya naive     : %11.28
+
+--- perfect-koordineli kosuluyor...
+    400/2429 ...
+    800/2429 ...
+    1200/2429 ...
+    1600/2429 ...
+    2000/2429 ...
+    2400/2429 ...
+    perfect: ihlal 1.98% | adet 48 | doygun 48 | sure 49 dk
+
+==========================================================================
+SONUC (iki batarya, koordineli, toplam solar 3.0)
+==========================================================================
+         kosul   ihlal%
+         naive     3.09
+           NWP     2.76
+       perfect     1.98   <- TABAN (bu kosum)
+
+  bilgi boslugu = NWP - perfect = 2.76 - 1.98 = +0.78 puan
+  doygunluk: 48 ihlalin 48'i batarya-dolu aninda (100%)
+
+ON-KAYITLI HUKUM (<author> onayladi):
+  bosluk 0.78 < 1.0 puan -> KAPI KAPALI.
+  Iyi tahmin (NWP) zaten tabana yakin; ogrenmenin/koordinasyonun
+  kapatabilecegi anlamli bosluk YOK. Kalan ihlal fiziksel taban
+  (kapasite siniri). Rapora: 'iki bataryada da mesele kapasite;
+  ogrenme boslugu olcumle kapali' diye yazilir.
+

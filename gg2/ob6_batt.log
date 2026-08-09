@@ -1,0 +1,98 @@
+
+==============================================================================
+0. KUNYE
+==============================================================================
+pandapower 3.4.0 | numpy 2.3.5 | python 3.13.5
+numba=True | k*=2.859375 | BB=147 | V_TARGET=1.045
+ON-KAYIT: P_MAX* = ceil(p95 / 0.5)*0.5 MW ; CAP* = 2.0 h x P_MAX*
+pencere 13800:16229 (2429 adim)
+
+==============================================================================
+1. CIPA C1 - SafeLayerOB == SafeLayer  (case33bw, maske = tum baralar)
+==============================================================================
+karsilastirilan durum: 126 | fark: 0 | 49 s
+C1 -> GECTI
+
+==============================================================================
+2. mv_oberrhein KURULUMU + CIPA C2
+==============================================================================
+ob_base_vm.npz: vm (16230, 108) | mv_buses 108 | kstar 2.859375 | Rcol[BB]=0.009342
+C2: 50 ornek adim, max |fark| = 0.000e+00 pu -> GECTI
+
+==============================================================================
+3. GEREKEN SARJ GUCU OLCUMU
+==============================================================================
+asiri voltajli adim: 367  (IS 2'de 367 bekleniyordu)
+    100/367  (kalan ~2.7 dk)
+    200/367  (kalan ~1.7 dk)
+    300/367  (kalan ~0.7 dk)
+  bitti: 235 s
+
+olculen adim   : 325
+bulunamayan    : 42
+    dusuk_voltaj_yaratiyor 42
+
+ihlalli adimlarda 1.05 ustu bara sayisi: medyan 35, maks 65
+(tek batarya tek barada; ihlal yayginsa tek batarya yetmez)
+
+==============================================================================
+4. CIPA C3 - BULUNAN GUC GERCEKTEN MINIMUM MU
+==============================================================================
+kontrol edilen: 25 | p*'ta banda giren VE p*-0.05 MW'ta girmeyen: 25
+C3 -> GECTI
+
+==============================================================================
+5. DAGILIM
+==============================================================================
+  p50   :   3.677 MW
+  p75   :   5.299 MW
+  p90   :   6.783 MW
+  p95   :   7.682 MW
+  p99   :  10.685 MW
+  p100  :  12.495 MW
+  ort   :   4.132 MW | min   1.038 | maks  12.495
+
+  aday P_MAX'larda ANLIK olarak giderilebilen adim (TUM 367 ihlal uzerinden):
+    P_MAX=  1.00 MW ->   0.0%  (0 / 367)
+    P_MAX=  2.00 MW ->  12.8%  (47 / 367)
+    P_MAX=  3.00 MW ->  31.6%  (116 / 367)
+    P_MAX=  5.00 MW ->  63.2%  (232 / 367)
+    P_MAX=  7.50 MW ->  83.1%  (305 / 367)
+    P_MAX= 10.00 MW ->  86.9%  (319 / 367)
+    P_MAX= 15.00 MW ->  88.6%  (325 / 367)
+    P_MAX= 20.00 MW ->  88.6%  (325 / 367)
+
+  UST SINIR: giderilebilir adim orani = 88.6% (325 / 367).
+  Kalanlar batarya NE KADAR BUYUK OLURSA OLSUN tek barada giderilemez.
+
+==============================================================================
+6. HUKUM - BATARYA BOYUTU
+==============================================================================
+p95 gereken sarj gucu : 7.682 MW
+P_MAX* (yukari yuvarlanmis): 8.00 MW
+CAP*   (2.0 h x P_MAX*)    : 16.00 MWh
+
+case33bw ile kiyas:
+  case33bw : P_MAX 3.00 MW / CAP 6.00 MWh | PV tepe 3.00 MW | yuk 1.86 MW
+  oberrhein: P_MAX 8.00 MW / CAP 16.00 MWh | PV tepe 34.79 MW | yuk 20.27 MW
+  P_MAX/PV_tepe : case33bw 1.00 -> oberrhein 0.230
+  P_MAX/yuk     : case33bw 1.61 -> oberrhein 0.395
+
+DUSULEN KARAR: DEVIR v8'deki 'case33bw oranini oldugu gibi tasi' kurali
+TERK EDILDI. O kural P_MAX = 34.79 MW verirdi; trafo 25 MVA oldugu icin
+batarya tam gucunde calisamaz, savunulamaz. Yerine gecen kural fizikseldir
+ve enerji/guc orani (2.0 saat) case33bw ile AYNI tutulmustur.
+
+EK KONTROL (hukum degil): ihlalli adimlarin ilk 200'inde batarya TAM
+gucte sarj ederken trafo yuklenmesi: ort 14.8%  maks 42.8%  >100%: 0 adim
+
+==============================================================================
+7. KAYIT
+==============================================================================
+yazildi: <repo>\gg2\data\ob6_batt.npz
+yazildi: <repo>\gg2\data\ob6_batt.csv (367 satir)
+
+CIPA C1/C2/C3 : GECTI / GECTI / GECTI
+P_MAX* = 8.00 MW | CAP* = 16.00 MWh
+
+BITTI.

@@ -1,0 +1,50 @@
+
+==============================================================================
+0. KUNYE
+==============================================================================
+pandapower 3.4.0 | numpy 2.3.5 | python 3.13.5
+numba=True | k*=2.8594 | BB=147
+pencere 13800:16229 (2429 adim)
+MV olcum kumesi: 108 bara
+
+==============================================================================
+1. IKI YOLU ADIM ADIM KOS
+==============================================================================
+    800/2429  (kalan ~1.6 dk)
+    1600/2429  (kalan ~0.8 dk)
+    2400/2429  (kalan ~0.0 dk)
+  bitti: 147 s
+
+==============================================================================
+2. TAM HASSASIYETLE KARSILASTIRMA
+==============================================================================
+gecerli adim            : 2429 / 2429
+max |vmax farki|  d     : 3.570e-13 pu
+max |vmin farki|        : 4.747e-13 pu
+d > 1e-9 olan adim      : 0
+
+storage YOK  : vmax_max 1.08365035 | vmin_min 0.96559634 | ihlal 367 adim (15.1091%)
+storage VAR  : vmax_max 1.08365035 | vmin_min 0.96559634 | ihlal 367 adim (15.1091%)
+
+0.0000 yuvarlamasi -> storage YOK: 1.0837 | storage VAR: 1.0837
+ob3 logunda yazan       : 1.0836
+ob4 logunda yazan       : 1.0837
+
+==============================================================================
+3. HUKUM
+==============================================================================
+H_B ELENDI: sifir gucte storage elektriksel olarak NOTR (d=3.570e-13 < 1e-9).
+Iki yol AYNI cozumu veriyor.
+
+Geriye H_A kaliyor: A5 toleransi hatali kuruldu. Referans (%.4f ile
+yazdirilmis 1.0836) kendi icinde +/-5e-5 belirsiz; test toleransi da
+5e-5. Bu test iki kosum ayni olsa bile kalabilir - benim hatam.
+
+DUZELTME: A5 karsilastirmasi YUVARLANMIS deger uzerinden yapilacak
+(round(vmax,4) == 1.0836) veya tolerans 1.5e-4'e cikarilacak.
+gg2_ob4_rcol.py bu duzeltmeyle YENIDEN kosulacak.
+
+NOT: gercek vmax_max = 1.08365035. Bu deger DEVIR'e tam haliyle yazilacak,
+bir daha 4 haneli bir sayiya cipa atilmayacak.
+
+BITTI.

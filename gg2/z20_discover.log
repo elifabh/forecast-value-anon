@@ -1,0 +1,374 @@
+==============================================================================
+Z20 TAM AGAC KESFI - hicbir hukum verilmez
+==============================================================================
+  kok: <repo>
+
+==============================================================================
+A/B - TUM .npz / .npy (50 adet)
+==============================================================================
+  data\bc_dataset.npz                                        npz ['obs', 'act']
+  data\bc_dataset_gru.npz                                    npz ['obs', 'act']
+  data\forecast_matrix.npz                                   npz ['solar', 'wind', 'dmult', 'price', 'index']
+  data\mpc_gru_safe_traj.npz                                 npz ['mn', 'mx', 'p', 'soc', 'start', 'done']
+  data\mpc_gru_traj.npz                                      npz ['mn', 'mx', 'p', 'soc', 'start', 'done']
+  data\mpc_pareto_partial.npy                                [OKUNAMADI] Array can't be memory-mapped: Python objects in dtype.
+  data\mpc_perfect_safe_traj.npz                             npz ['mn', 'mx', 'p', 'soc', 'start', 'done']
+  data\mpc_perfect_traj.npz                                  npz ['mn', 'mx', 'p', 'soc', 'start', 'done']
+  data\opf_base_vm.npz                                       npz ['vm', 'Rcol', 'S_base', 'price', 'index']
+  data\opf_base_vm.npz                                       [OKUNAMADI] Object arrays cannot be loaded when allow_pickle=False
+  data\opf_base_vm2.npz                                      npz ['vm', 'Rcol_A', 'Rcol_B', 'S_base', 'price', 'bat_a', 'bat_b', 'index']
+  data\opf_base_vm2.npz                                      [OKUNAMADI] Object arrays cannot be loaded when allow_pickle=False
+  data\opf_demos.npz                                         npz ['p', 'soc', 'vmin', 'vmax', 'index']
+  data\rule_control_traj.npz                                 npz ['mn', 'mx', 'p', 'soc']
+  gg2\data\mpc2_ev_naive1.npz                                npz ['vmin', 'vmax', 'pA', 'pB', 'socA', 'socB', 'loA', 'hiA', 'loB', 'hiB', 'price', 'status']
+  gg2\data\mpc2_ev_naive1_w1.npz                             npz ['vmin', 'vmax', 'pA', 'pB', 'socA', 'socB', 'loA', 'hiA', 'loB', 'hiB', 'price', 'status']
+  gg2\data\mpc2_ev_naive2.npz                                npz ['vmin', 'vmax', 'pA', 'pB', 'socA', 'socB', 'loA', 'hiA', 'loB', 'hiB', 'price', 'status']
+  gg2\data\mpc2_ev_nwp1.npz                                  npz ['vmin', 'vmax', 'pA', 'pB', 'socA', 'socB', 'loA', 'hiA', 'loB', 'hiB', 'price', 'status']
+  gg2\data\mpc2_ev_nwp1_w1.npz                               npz ['vmin', 'vmax', 'pA', 'pB', 'socA', 'socB', 'loA', 'hiA', 'loB', 'hiB', 'price', 'status']
+  gg2\data\mpc2_ev_nwp2.npz                                  npz ['vmin', 'vmax', 'pA', 'pB', 'socA', 'socB', 'loA', 'hiA', 'loB', 'hiB', 'price', 'status']
+  gg2\data\mpc2_ev_perfect2.npz                              npz ['vmin', 'vmax', 'pA', 'pB', 'socA', 'socB', 'loA', 'hiA', 'loB', 'hiB', 'price', 'status']
+  gg2\data\nwp_solar_fc.npz                                  npz ['solar', 'model', 'a_mean', 'a_tail', 'K', 'split']
+  gg2\data\nwp_solar_fc_cal.npz                              npz ['solar', 'model', 'a_mean', 'a_tail', 'K', 'split', 'seed', 'weather']
+  gg2\data\nwp_solar_fc_calcap.npz                           npz ['solar', 'model', 'a_mean', 'a_tail', 'K', 'split', 'seed', 'weather']
+  gg2\data\nwp_solar_fc_capnorm.npz                          npz ['solar', 'model', 'a_mean', 'a_tail', 'K', 'split']
+  gg2\data\nwp_solar_fc_capnorm_ecmwf_ifs025.npz             npz ['solar', 'model', 'a_mean', 'a_tail', 'K', 'split', 'seed', 'nwp_model']
+  gg2\data\nwp_solar_fc_capnorm_gfs_seamless.npz             npz ['solar', 'model', 'a_mean', 'a_tail', 'K', 'split', 'seed', 'nwp_model']
+  gg2\data\nwp_solar_fc_capnorm_s1.npz                       npz ['solar', 'model', 'a_mean', 'a_tail', 'K', 'split', 'seed']
+  gg2\data\nwp_solar_fc_capnorm_s7.npz                       npz ['solar', 'model', 'a_mean', 'a_tail', 'K', 'split', 'seed']
+  gg2\data\placebo_shift1.npz                                npz ['mn', 'mx', 'p', 'soc', 'start', 'done', 'shift_days']
+  gg2\data\placebo_shift14.npz                               npz ['mn', 'mx', 'p', 'soc', 'start', 'done', 'shift_days']
+  gg2\data\placebo_shift2.npz                                npz ['mn', 'mx', 'p', 'soc', 'start', 'done', 'shift_days']
+  gg2\data\placebo_shift21.npz                               npz ['mn', 'mx', 'p', 'soc', 'start', 'done', 'shift_days']
+  gg2\data\placebo_shift3.npz                                npz ['mn', 'mx', 'p', 'soc', 'start', 'done', 'shift_days']
+  gg2\data\placebo_shift4.npz                                npz ['mn', 'mx', 'p', 'soc', 'start', 'done', 'shift_days']
+  gg2\data\placebo_shift5.npz                                npz ['mn', 'mx', 'p', 'soc', 'start', 'done', 'shift_days']
+  gg2\data\placebo_shift7.npz                                npz ['mn', 'mx', 'p', 'soc', 'start', 'done', 'shift_days']
+  gg2\mpc_solar_a25_traj.npz                                 npz ['mn', 'mx', 'p', 'soc', 'start', 'done']
+  gg2\mpc_solar_a50_traj.npz                                 npz ['mn', 'mx', 'p', 'soc', 'start', 'done']
+  gg2\mpc_solar_a75_traj.npz                                 npz ['mn', 'mx', 'p', 'soc', 'start', 'done']
+  gg2\mpc_solar_oracle_traj.npz                              npz ['mn', 'mx', 'p', 'soc', 'start', 'done']
+  gg2\nwp_fair_cal_nwp.npz                                   npz ['mn', 'mx', 'p', 'soc', 'start', 'done']
+  gg2\nwp_fair_calcap_nwp.npz                                npz ['mn', 'mx', 'p', 'soc', 'start', 'done']
+  gg2\nwp_fair_ecmwf_ifs025_nwp.npz                          npz ['mn', 'mx', 'p', 'soc', 'start', 'done']
+  gg2\nwp_fair_gfs_seamless_nwp.npz                          npz ['mn', 'mx', 'p', 'soc', 'start', 'done']
+  gg2\nwp_fair_s1_nwp.npz                                    npz ['mn', 'mx', 'p', 'soc', 'start', 'done']
+  gg2\nwp_fair_s7_nwp.npz                                    npz ['mn', 'mx', 'p', 'soc', 'start', 'done']
+  gg2\nwp_fair_traj_naive.npz                                npz ['mn', 'mx', 'p', 'soc', 'start', 'done']
+  gg2\nwp_fair_traj_nwp.npz                                  npz ['mn', 'mx', 'p', 'soc', 'start', 'done']
+  gg2\nwp_fair_traj_oracle.npz                               npz ['mn', 'mx', 'p', 'soc', 'start', 'done']
+  gg2\nwp_mpc_traj.npz                                       npz ['mn', 'mx', 'p', 'soc', 'start', 'done']
+  gg2\nwp_mpc_traj_naive.npz                                 npz ['mn', 'mx', 'p', 'soc', 'start', 'done']
+
+  --- TAHMIN MATRISI ADAYLARI (sekil (N,48)) ---
+  data\forecast_matrix.npz                                   anahtar=solar        shape=(16230, 48)
+  data\forecast_matrix.npz                                   anahtar=wind         shape=(16230, 48)
+  data\forecast_matrix.npz                                   anahtar=dmult        shape=(16230, 48)
+  data\forecast_matrix.npz                                   anahtar=price        shape=(16230, 48)
+  gg2\data\nwp_solar_fc.npz                                  anahtar=solar        shape=(16230, 48)
+  gg2\data\nwp_solar_fc_cal.npz                              anahtar=solar        shape=(16230, 48)
+  gg2\data\nwp_solar_fc_calcap.npz                           anahtar=solar        shape=(16230, 48)
+  gg2\data\nwp_solar_fc_capnorm.npz                          anahtar=solar        shape=(16230, 48)
+  gg2\data\nwp_solar_fc_capnorm_ecmwf_ifs025.npz             anahtar=solar        shape=(16230, 48)
+  gg2\data\nwp_solar_fc_capnorm_gfs_seamless.npz             anahtar=solar        shape=(16230, 48)
+  gg2\data\nwp_solar_fc_capnorm_s1.npz                       anahtar=solar        shape=(16230, 48)
+  gg2\data\nwp_solar_fc_capnorm_s7.npz                       anahtar=solar        shape=(16230, 48)
+
+==============================================================================
+C - TUM .py (139 adet)
+==============================================================================
+  align_clean.py                                                     2598 B
+  bc_dataset.py                                                      1004 B
+  bench_curves.py                                                    8577 B
+  check.py                                                            176 B
+  check_bus_candidates.py                                             850 B
+  check_lindistflow.py                                               3730 B
+  check_solar_entsoe.py                                              1470 B
+  diag_combined_mpc.py                                               7586 B
+  diag_donothing_soc.py                                               975 B
+  diag_econ_mpc.py                                                   2906 B
+  diag_economic.py                                                   2739 B
+  diag_floor.py                                                      1987 B
+  diag_mpc_fairvolt.py                                               2020 B
+  diag_mpc_forecastvolt.py                                           3938 B
+  diag_mpc_forecastvolt_backup.py                                    3798 B
+  diag_mpc_margin_sweep.py                                           2944 B
+  diag_mpc_perfect.py                                                1679 B
+  diag_mpc_profile.py                                                2068 B
+  diag_mpc_test_depth.py                                             1261 B
+  diag_mpc_val.py                                                    1494 B
+  diag_mpc_val_w001.py                                               1474 B
+  diag_nosafe.py                                                     4830 B
+  diag_saturation.py                                                 6983 B
+  diag_soc_profile.py                                                1627 B
+  diag_volterr_quantiles.py                                          1772 B
+  download_data.py                                                   3809 B
+  env_adamargin.py                                                   4762 B
+  env_econ.py                                                        3376 B
+  env_econ_v.py                                                      4776 B
+  env_gridguard.py                                                   5473 B
+  env_hybrid.py                                                      4491 B
+  env_irish_feeder.py                                                4083 B
+  eval_test_final.py                                                 2164 B
+  eval_test_hybrid.py                                                2002 B
+  export_demo_week.py                                                2520 B
+  feeder_test.py                                                      571 B
+  fetch_demand_entsoe.py                                             3176 B
+  fetch_price_entsoe.py                                              1246 B
+  fetch_wind_solar.py                                                1838 B
+  final_eval.py                                                      4403 B
+  forecast_bench_load.py                                            15352 B
+  forecast_bench_price.py                                           14774 B
+  forecast_bench_solar.py                                           16007 B
+  forecast_bench_wind.py                                            15067 B
+  forecast_load.py                                                  10123 B
+  forecast_matrix.py                                                 7109 B
+  forecast_price.py                                                  9316 B
+  forecast_solar.py                                                  9604 B
+  forecast_solar_clearsky.py                                         7793 B
+  forecast_wind.py                                                  10075 B
+  get_price.py                                                       2355 B
+  gg2\gg2_did_wcost.py                                               7262 B
+  gg2\gg2_inspect_gg1.py                                             6748 B
+  gg2\gg2_kapi1_scale_sweep.py                                      10771 B
+  gg2\gg2_miqp_pilot_33bus.py                                        9563 B
+  gg2\gg2_mpc2_evidence.py                                          17737 B
+  gg2\gg2_mpc2_floor.py                                              3988 B
+  gg2\gg2_mpc2_gru.py                                                4792 B
+  gg2\gg2_mpc2_solar3.py                                             5606 B
+  gg2\gg2_mpc2_total3.py                                             5784 B
+  gg2\gg2_mpc2_wcost.py                                              8090 B
+  gg2\gg2_mpc_solar_oracle.py                                        4081 B
+  gg2\gg2_night.py                                                  10197 B
+  gg2\gg2_nwp_build_fc.py                                            7114 B
+  gg2\gg2_nwp_diag.py                                                9322 B
+  gg2\gg2_nwp_fetch.py                                               6685 B
+  gg2\gg2_nwp_forecaster.py                                         10020 B
+  gg2\gg2_nwp_mpc.py                                                 9648 B
+  gg2\gg2_nwp_mpc_fair.py                                            8519 B
+  gg2\gg2_nwp_season.py                                              9383 B
+  gg2\gg2_nwp_smoke.py                                               5158 B
+  gg2\gg2_oracle_anomaly.py                                         11450 B
+  gg2\gg2_oracle_sweep_b.py                                          7730 B
+  gg2\gg2_oracle_test.py                                             2692 B
+  gg2\gg2_solar_alpha_sweep.py                                       5266 B
+  gg2\gg2_verify.py                                                 13811 B
+  gg2\gg2_z10_seeds.py                                               9279 B
+  gg2\gg2_z14_seed_fc.py                                            11338 B
+  gg2\gg2_z15_boot.py                                                8602 B
+  gg2\gg2_z15_build_models.py                                        8871 B
+  gg2\gg2_z15_nwp_models.py                                         10374 B
+  gg2\gg2_z16_alpha.py                                               8554 B
+  gg2\gg2_z16_final.py                                               7423 B
+  gg2\gg2_z16_placebo_multi.py                                       8298 B
+  gg2\gg2_z17_bias.py                                               10155 B
+  gg2\gg2_z17_peak.py                                                7793 B
+  gg2\gg2_z18_all_shifts.py                                          8602 B
+  gg2\gg2_z19_boot.py                                               11378 B
+  gg2\gg2_z19_noweather.py                                           9076 B
+  gg2\gg2_z1_drl_nwp.py                                              9520 B
+  gg2\gg2_z20_discover.py                                            5459 B
+  gg2\gg2_z20_inventory.py                                           5795 B
+  gg2\gg2_z9_valid.py                                                9496 B
+  gg2\make_fig_gg2.py                                               13885 B
+  inventory.py                                                       3114 B
+  load_demand.py                                                     1753 B
+  make_fig_pareto.py                                                 1516 B
+  map_demand.py                                                       844 B
+  map_gen.py                                                         1328 B
+  metrics.py                                                         1494 B
+  mpc2_test.py                                                       4503 B
+  mpc_econ_voltage_pareto.py                                         7884 B
+  mpc_gru.py                                                         2946 B
+  mpc_gru_safe.py                                                    3299 B
+  mpc_perfect.py                                                     2793 B
+  mpc_perfect_safe.py                                                2855 B
+  multiseed_eval.py                                                  2799 B
+  night_fair_pareto.py                                               2303 B
+  night_hybrid.py                                                    1331 B
+  night_seeds.py                                                     1192 B
+  night_seeds_v2.py                                                  1228 B
+  opf_base_voltages.py                                               2168 B
+  opf_base_voltages2.py                                              4085 B
+  opf_demos.py                                                       2834 B
+  opf_expert.py                                                      2081 B
+  opf_expert2.py                                                     2847 B
+  plot_bench.py                                                      4840 B
+  plot_comparison.py                                                 2718 B
+  plot_drl_before_after.py                                           3151 B
+  plot_econ_slides.py                                                1865 B
+  plot_robustness.py                                                 2527 B
+  report_prep.py                                                     2148 B
+  rule_control.py                                                    4615 B
+  sac_agent.py                                                       1481 B
+  sac_econ.py                                                        1262 B
+  safe_layer.py                                                      6982 B
+  safe_layer2.py                                                     2397 B
+  sweep_forecast.py                                                  2720 B
+  test_history.py                                                     957 B
+  train_adamargin.py                                                 4509 B
+  train_bc.py                                                        2623 B
+  train_econ.py                                                      3656 B
+  train_econ_v.py                                                    4929 B
+  train_econ_v2.py                                                   4659 B
+  train_hybrid.py                                                    4395 B
+  train_sac.py                                                       4726 B
+  tune_solar.py                                                      1846 B
+  verify_lgbm_offset.py                                              5244 B
+  verify_wind_ridge.py                                               5940 B
+
+==============================================================================
+D/E - HEDEF SCRIPTLERDE KAYIT ve TAHMIN MATRISI SATIRLARI
+==============================================================================
+
+  --- gg2\gg2_z16_placebo_multi.py ---
+         4  gg2_z16_placebo_multi.py - Z16: plasebo testi COKLU KAYDIRMA ile.
+        17    Sadece GERIYE kaydirma kullanilir (i-shift). Ileriye kaydirma gelecekteki
+        35    CIPA      : shift=7 -> %11.16 (+/- 0.15) uretmeli. Uretmezse hukum yok.
+        39      python gg2/gg2_z16_placebo_multi.py 2>&1 | tee gg2/z16_placebo.log
+        41      python gg2/gg2_z16_placebo_multi.py --shifts 7,3  2>&1 | tee gg2/z16_a.log
+        42      python gg2/gg2_z16_placebo_multi.py --shifts 14,21 2>&1 | tee gg2/z16_b.log
+        98      ap.add_argument("--nwp", default="gg2/data/nwp_solar_fc_capnorm.npz")
+        99      ap.add_argument("--shifts", default=DEFAULT_SHIFTS,
+       112          days = [int(x.strip()) for x in a.shifts.split(",") if x.strip()]
+       114          _die("--shifts sayilardan olusmali, ornek: 3,7,14,21")
+       130      print("  CIPA           : shift=7 -> %%%.2f (+/- %.2f)" % (ANCHOR_VIOL, ANCHOR_TOL))
+       138          shift = d * 48
+       140          if T0 - shift < 0:
+       142          idx = np.clip(np.arange(len(nwp)) - shift, 0, len(nwp) - 1)
+       143          placebo = nwp[idx]
+       145          print("KAYDIRMA %d GUN (%d adim) kosuluyor..." % (d, shift))
+       147          r = V.run_block(placebo, T0, T1, "plasebo%d" % d)
+       149          op = outdir / ("placebo_shift%d.npz" % d)
+       150          np.savez(op, mn=r["mn"], mx=r["mx"], p=r["P"], soc=r["SOC"],
+       151                   start=T0, done=n, shift_days=d)
+       174          print("  shift=7  beklenen %.2f | olculen %.2f | fark %+.2f  -> %s"
+       180          print("  shift=7 bu kosumda yok -> cipa DEGERLENDIRILEMEDI.")
+       181          print("  Hukum ancak shift=7 iceren kosumla birlikte verilir.")
+       199      print("  gg2/data/placebo_shift*.npz olarak kaydedildi; bootstrap ayri kosulur.\n")
+
+  --- gg2\gg2_z16_alpha.py ---
+        62      ("oracle",  "gg2/nwp_fair_traj_oracle.npz", 0.000),
+        63      ("NWP",     "gg2/nwp_fair_traj_nwp.npz",    None),
+        64      ("plac3",   "gg2/data/placebo_shift3.npz",  None),
+        65      ("plac7",   "gg2/data/placebo_shift7.npz",  None),
+        66      ("plac14",  "gg2/data/placebo_shift14.npz", None),
+        67      ("plac21",  "gg2/data/placebo_shift21.npz", None),
+        68      ("naive",   "gg2/nwp_fair_traj_naive.npz",  1.000),
+        89      ap.add_argument("--fcmat", default="data/forecast_matrix.npz")
+        90      ap.add_argument("--nwp", default="gg2/data/nwp_solar_fc_capnorm.npz")
+       139          tag = "plac%d" % d
+       200      a3 = alphas["plac3"]
+
+  --- gg2\gg2_z16_final.py ---
+        11    bootstrap plac3 - naive = -1.08 +/- 0.67 (1.6 SE) veriyor -> COZULMUYOR.
+        61      "naive":  ("gg2/nwp_fair_traj_naive.npz",  1.000),
+        62      "NWP":    ("gg2/nwp_fair_traj_nwp.npz",    0.799),
+        63      "plac3":  ("gg2/data/placebo_shift3.npz",  1.285),
+        64      "plac7":  ("gg2/data/placebo_shift7.npz",  1.461),
+        65      "plac14": ("gg2/data/placebo_shift14.npz", 1.291),
+        66      "plac21": ("gg2/data/placebo_shift21.npz", 1.636),
+        68  PLACEBOS = ["plac3", "plac7", "plac14", "plac21"]
+       111      for t in ["NWP", "plac3", "plac7", "plac14", "plac21", "naive"]:
+       181      print("    plac3 1.285 | plac7 1.461 | plac14 1.291 | plac21 1.636")
+
+  --- gg2\gg2_z18_all_shifts.py ---
+         4  gg2_z18_all_shifts.py - Z18: SEKIZ kaydirmanin hata cubuklariyla tam tablosu.
+        19    ANA SORU  : plac1 (en kisa kaydirma) gercek NWP'den 2 SE ile AYRISIYOR mu?
+        21    HUKUM (1) : plac1 - NWP >= 2 SE  -> yanlis hava OLCULEBILIR sekilde kotu.
+        24    HUKUM (2) : plac1 - NWP < 2 SE   -> yanlis havali tahmin gercek tahminden
+        28    HUKUM (3) : plac1 - naive >= 2 SE (yani kisa kaydirma naive'den olculebilir
+        40    python gg2/gg2_z18_all_shifts.py 2>&1 | tee gg2/z18_all_shifts.log
+        70      ap.add_argument("--fcmat", default="data/forecast_matrix.npz")
+        71      ap.add_argument("--nwp", default="gg2/data/nwp_solar_fc_capnorm.npz")
+       101      paths = {"NWP": "gg2/nwp_fair_traj_nwp.npz", "naive": "gg2/nwp_fair_traj_naive.npz"}
+       103          paths["p%d" % d] = "gg2/data/placebo_shift%d.npz" % d
+       170      print("  ANA SORU: plac1 (1 gun kaydirma) gercek NWP'den ayrisiyor mu?")
+       171      print("    plac1 - NWP = %+.2f +/- %.2f  (%.1f SE)" % (a1, s1, k1))
+       181      print("\n  EK: plac1 naive'den olculebilir sekilde iyi mi?")
+       182      print("    plac1 - naive = %+.2f +/- %.2f  (%.1f SE)" % (a2, s2, k2))
+
+  --- gg2\gg2_z15_nwp_models.py ---
+        99               % (e.code, model, d0, d1, e.read().decode("utf-8", "replace")[:300]))
+       124          body = e.read().decode("utf-8", "replace")[:200]
+
+  --- gg2\gg2_z15_build_models.py ---
+        20    nwp_solar_fc_capnorm.npz ile AYNI olmali (tol 1e-4) ve alpha 0.799 vermeli.
+       107      ap.add_argument("--fcmat", default="data/forecast_matrix.npz")
+       108      ap.add_argument("--ref", default="gg2/data/nwp_solar_fc_capnorm.npz")
+       144      cap = (s.rolling(CAP_WIN, min_periods=48).max().shift(LAG)
+       199          op = outdir / ("nwp_solar_fc_capnorm_%s.npz" % tag)
+       203          np.savez(op, solar=built[tag], model="lgbm", a_mean=alphas[tag],
+       215          print("      --nwp gg2/data/nwp_solar_fc_capnorm_%s.npz \\" % tag)
+       216          print("      --out gg2/nwp_fair_%s.npz 2>&1 | tee gg2/nwp_fair_%s.log" % (tag, tag))
+
+  --- gg2\gg2_z19_noweather.py ---
+        47    python gg2/gg2_nwp_mpc_fair.py --nwp gg2/data/nwp_solar_fc_cal.npz \
+        48        --out gg2/nwp_fair_cal.npz 2>&1 | tee gg2/nwp_fair_cal.log
+        49    python gg2/gg2_nwp_mpc_fair.py --nwp gg2/data/nwp_solar_fc_calcap.npz \
+        50        --out gg2/nwp_fair_calcap.npz 2>&1 | tee gg2/nwp_fair_calcap.log
+        92      ap.add_argument("--fcmat", default="data/forecast_matrix.npz")
+        93      ap.add_argument("--ref", default="gg2/data/nwp_solar_fc_capnorm.npz")
+       121      cap = (s.rolling(CAP_WIN, min_periods=48).max().shift(LAG)
+       200          op = outdir / ("nwp_solar_fc_%s.npz" % tag)
+       204          np.savez(op, solar=fc, model="lgbm", a_mean=al, a_tail=tl,
+       213          print("      --nwp gg2/data/nwp_solar_fc_%s.npz \\" % tag)
+       214          print("      --out gg2/nwp_fair_%s.npz 2>&1 | tee gg2/nwp_fair_%s.log" % (tag, tag))
+
+  --- gg2\gg2_nwp_mpc_fair.py ---
+        14    solar tahmini   : --use-naive ise forecast_matrix (naive) | degilse NWP cap-norm
+        61  def fc_windows_ldf(i, Hh, solar_fc):
+        63      TEK fark: solar_fc disaridan verilir (naive / oracle / NWP)."""
+        68          kk = min(t - 1, solar_fc.shape[1] - 1)
+        69          v_fut = D.ldf_v(solar_fc[i, kk], M.wind_fc[i, kk], M.dmult_fc[i, kk])
+        81      ap.add_argument("--nwp", default="gg2/data/nwp_solar_fc_capnorm.npz")
+        82      ap.add_argument("--out", default="gg2/nwp_fair_traj.npz")
+        93      K = M.solar_fc.shape[1]
+        98          solar_fc = M.solar_fc
+       102          solar_fc = M.solar[idx]                    # mukemmel solar
+       109          solar_fc = z["solar"]
+       112      if solar_fc.shape != M.solar_fc.shape:
+       113          _die(f"sekil uyusmuyor: {solar_fc.shape} vs {M.solar_fc.shape}")
+       115      out = Path(str(a.out).replace(".npz", suffix + ".npz"))
+       149          vmb, pr = fc_windows_ldf(i, Hh, solar_fc)
+       168              np.savez(out, mn=mn, mx=mx, p=P, soc=SOC, start=T0, done=j + 1)
+       170      np.savez(out, mn=mn, mx=mx, p=P, soc=SOC, start=T0, done=n)
+
+  --- gg2\gg2_nwp_build_fc.py ---
+        20  CIKTI: gg2/data/nwp_solar_fc_capnorm.npz  ->  anahtar 'solar', shape (N,K)
+        63      f["ghi_lag1"] = mean.shift(1).bfill().to_numpy()
+        64      f["ghi_lead1"] = mean.shift(-1).ffill().to_numpy()
+        93      ap.add_argument("--fcmat", default="data/forecast_matrix.npz")
+        95      ap.add_argument("--out", default="gg2/data/nwp_solar_fc_capnorm.npz")
+       124      cap = s.rolling(CAP_WIN, min_periods=48).max().shift(LAG).bfill().clip(lower=0.05).to_numpy(
+       171      np.savez(out, solar=fc.astype(np.float32), model=best, a_mean=mw / mn,
+
+  --- gg2\gg2_nwp_fetch.py ---
+        74          _die(f"HTTP {e.code} ({d0}->{d1}): {e.read().decode('utf-8', 'replace')[:300]}")
+
+  --- gg2\gg2_nwp_season.py ---
+        83      cap = s.rolling(CAP_WIN, min_periods=48).max().shift(LAG).bfill().clip(lower=0.05).to_numpy(
+        88      f["ghi_lag1"] = mean.shift(1).bfill().to_numpy()
+        89      f["ghi_lead1"] = mean.shift(-1).ffill().to_numpy()
+       105      K = M.solar_fc.shape[1]
+       110  def run_block(solar_fc: np.ndarray, e0: int, e1: int, label: str) -> tuple[float, float]:
+       120              kk = min(t - 1, solar_fc.shape[1] - 1)
+       121              v_fut = D.ldf_v(solar_fc[i, kk], M.wind_fc[i, kk], M.dmult_fc[i, kk])
+       161      K = M.solar_fc.shape[1]
+       178      en = np.abs(M.solar_fc[sl] - tr[sl]).ravel()
+       186      for label, fc in (("naive", M.solar_fc), ("oracle", oracle_fc), ("NWP", nwp_fc)):
+
+  --- forecast_matrix.py ---
+         2  forecast_matrix.py  --  GRU tahminlerini env'e besleyecek N x H matrisleri uretir.
+         4  Cikti env-IC birimlerinde; causal (i'de sadece <=T_i bilgisi). -> data/forecast_matrix.npz
+         5  Calistir: python forecast_matrix.py
+       113  src=tgt-48; src=np.where(src<0,tgt,src); solar_fc=solar_env[src].astype(np.float32)
+       121                   ("wind",wind_fc,wind_true),("solar",solar_fc,solar_env)]:
+       125  np.savez_compressed("data/forecast_matrix.npz",solar=solar_fc,wind=wind_fc,dmult=dmult_fc,
+       127  print(f"\nkaydedildi: data/forecast_matrix.npz | her seri {solar_fc.shape}")
+
+  --- mpc_econ_voltage_pareto.py ---
+        41  f = np.load("data/forecast_matrix.npz")
+        43  solar_fc = f["solar"]            # KUSURLU solar tahmini (DRL ile ayni bilgi -- adil)
+        47  d = np.load("data/opf_base_vm.npz", allow_pickle=True)
+       160          np.save("data/mpc_pareto_partial.npy", np.array(results, dtype=object))
+

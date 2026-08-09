@@ -1,0 +1,110 @@
+==========================================================================
+IKI-BATARYA KANIT KOSUMU  (Z4 kar + Z5 hata cubugu + Z6 depth + Z7 kunye)
+==========================================================================
+mpc2_test import ediliyor...
+
+KANIT (1) gercek solar site-tepesi: 1.5000  (hedef 1.50)
+KANIT (2) naive fc/gercek orani: 0.986
+KANIT (3) NWP   fc/gercek orani: 1.000
+  -> uc kanit da tuttu.
+
+KUNYE: toplam solar 3.0 (site 1.5) | 2 x 6 MWh/3 MW | dilim 13800:16229
+       planlayici W_COST = 1e-3 (opf_expert ve opf_expert2 AYNI)
+       ufuk voltaji = her adim tam runpp | safe layer = SafeLayer2
+
+--- naive2 kosuluyor  (mode=gru, batarya=2, fc=naive)
+    naive2: 400/2429  (10 dk, kalan ~51 dk)
+    naive2: 800/2429  (19 dk, kalan ~38 dk)
+    naive2: 1200/2429  (27 dk, kalan ~28 dk)
+    naive2: 1600/2429  (35 dk, kalan ~18 dk)
+    naive2: 2000/2429  (43 dk, kalan ~9 dk)
+    naive2: 2400/2429  (52 dk, kalan ~1 dk)
+    yazildi: gg2\data\mpc2_ev_naive2.npz  (52 dk)
+    ihlal 3.09% (75 adet: 75 asiri, 0 dusuk) | kar 12976 EUR
+    CIPA: beklenen 3.09 | fark 0.00 puan -> TUTTU
+
+--- nwp2 kosuluyor  (mode=gru, batarya=2, fc=nwp)
+    nwp2: 400/2429  (8 dk, kalan ~42 dk)
+    nwp2: 800/2429  (16 dk, kalan ~33 dk)
+    nwp2: 1200/2429  (25 dk, kalan ~25 dk)
+    nwp2: 1600/2429  (33 dk, kalan ~17 dk)
+    nwp2: 2000/2429  (41 dk, kalan ~9 dk)
+    nwp2: 2400/2429  (49 dk, kalan ~1 dk)
+    yazildi: gg2\data\mpc2_ev_nwp2.npz  (49 dk)
+    ihlal 2.76% (67 adet: 67 asiri, 0 dusuk) | kar 13701 EUR
+    CIPA: beklenen 2.76 | fark 0.00 puan -> TUTTU
+
+--- perfect2 kosuluyor  (mode=perfect, batarya=2, fc=None)
+    perfect2: 400/2429  (8 dk, kalan ~41 dk)
+    perfect2: 800/2429  (16 dk, kalan ~33 dk)
+    perfect2: 1200/2429  (24 dk, kalan ~25 dk)
+    perfect2: 1600/2429  (33 dk, kalan ~17 dk)
+    perfect2: 2000/2429  (41 dk, kalan ~9 dk)
+    perfect2: 2400/2429  (49 dk, kalan ~1 dk)
+    yazildi: gg2\data\mpc2_ev_perfect2.npz  (49 dk)
+    ihlal 1.98% (48 adet: 48 asiri, 0 dusuk) | kar 19282 EUR
+    CIPA: beklenen 1.98 | fark 0.00 puan -> TUTTU
+
+--- nwp1 kosuluyor  (mode=gru, batarya=1, fc=nwp)
+    nwp1: 400/2429  (7 dk, kalan ~38 dk)
+    nwp1: 800/2429  (15 dk, kalan ~31 dk)
+    nwp1: 1200/2429  (22 dk, kalan ~23 dk)
+    nwp1: 1600/2429  (30 dk, kalan ~16 dk)
+    nwp1: 2000/2429  (37 dk, kalan ~8 dk)
+    nwp1: 2400/2429  (45 dk, kalan ~1 dk)
+    yazildi: gg2\data\mpc2_ev_nwp1.npz  (45 dk)
+    ihlal 5.93% (144 adet: 144 asiri, 0 dusuk) | kar 8993 EUR
+
+==========================================================================
+TABLO 1 - IHLAL / KAR / DEPTH
+==========================================================================
+  kol          ihlal%   kar(EUR)  depth_sum       adet
+  naive2         3.09      12976       3.41         75
+  nwp2           2.76      13701       3.31         67
+  perfect2       1.98      19282       2.25         48
+  nwp1           5.93       8993       7.54        144
+
+  NOT (Z6): depth_sum = sum(max(0,Vmax-HI) + max(0,LO-Vmin)) p.u.
+  GG-1 tablosundaki 'Depth' bu tanimla AYNI MI, GG-1 script'inden
+  dogrulanmadan tek tabloda birlestirilmez.
+
+==========================================================================
+TABLO 2 - DOYGUNLUK AYRIMI  (totolojinin yerine gecen OLCUM)
+==========================================================================
+  kol          status%  asiri:enerji%  asiri:dolu%  dusuk:enerji%
+  naive2           3.1          100.0         89.3            nan
+  nwp2             2.8          100.0         85.1            nan
+  perfect2         2.0          100.0         81.2            nan
+  nwp1             5.9          100.0         88.9            nan
+
+  status%  : safe_layer 'saturated' orani -> ihlal tanimiyla AYNI (totoloji)
+  enerji%  : ihlal aninda basligin ENERJI siniri yuzunden bagli oldugu oran
+             (guc siniri P_MAX degil). Iki bataryada DA bagli ise sayilir.
+  dolu%    : baslik < 0.05 MW, yani batarya pratikte DOLU
+
+==========================================================================
+TABLO 3 - BOOTSTRAP (gunluk blok 48 adim, 10000 tekrar, eslestirilmis)
+==========================================================================
+  karsilastirma                  fark       SE   SE kat  hukum
+  bilgi boslugu (ihlal)         +0.79     0.52      1.5  YORUMLANMAZ (<2 SE)  [puan]
+  naive - NWP (ihlal)           +0.33     0.45      0.7  YORUMLANMAZ (<2 SE)  [puan]
+  batarya sayisi (ihlal)        +3.21     0.73      4.4  GERCEK (>=2 SE)  [puan]
+  naive - NWP (kar)           -774.53  1666.11      0.5  YORUMLANMAZ (<2 SE)  [EUR]
+  1bat - 2bat (kar)          -4813.53  1730.01      2.8  GERCEK (>=2 SE)  [EUR]
+
+  RAPORLANACAK CUMLE (on-kayit, secenek C):
+    bilgi boslugu = NWP - perfect = 0.79 +/- 0.52 puan
+    'kapi kapali/acik' dili KULLANILMAZ.
+
+==========================================================================
+Z7 - BATARYA SAYISI ETKISI (ayni boru hatti, ayni ayar)
+==========================================================================
+  1 batarya (NWP) : 5.93%
+  2 batarya (NWP) : 2.76%
+  fark            : 3.17 puan
+
+  Bu, tek degisken batarya sayisi olan TEK temiz kiyas.
+  Diger boru hattindaki 11.28%% ile DOGRUDAN kiyaslanamaz:
+  ufuk modeli (LinDistFlow farki vs tam runpp) ve ekonomik agirlik
+  (w_econ=1.0 vs W_COST=1e-3) farkli. Makalede bu ayrim yazilir.
+

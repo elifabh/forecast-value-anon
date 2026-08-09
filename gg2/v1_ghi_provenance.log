@@ -1,0 +1,56 @@
+==============================================================================
+V1 v2 - GHI SUTUN PROVENANSI
+==============================================================================
+
+[S2] TAHMINCININ KULLANDIGI SUTUN (koddan okunuyor)
+  gg2/gg2_nwp_build_fc.py            ['ghi', 'ghi30', 'ghi_', 'ghi_lag1', 'ghi_lead1', 'ghi_mean', 'ghi_roi']
+  gg2/gg2_z15_build_models.py        ['ghi30', 'ghi_roi', 'ghi_roi_ecmwf_ifs025', 'ghi_roi_gfs_seamless']
+  gg2/gg2_z19_noweather.py           (ghi gecmiyor)
+  gg2/gg2_nwp_season.py              ['ghi', 'ghi_lag1', 'ghi_lead1', 'ghi_mean', 'ghi_p1_', 'ghi_path', 'ghi_roi']
+  gg2/gg2_verify.py                  ['ghi', 'ghi_lag1', 'ghi_lead1', 'ghi_mean', 'ghi_p1_', 'ghi_path', 'ghi_roi']
+  -> nokta-bazli kullanilan sutunlar: BELIRSIZ
+
+[CSV] nwp_ghi_roi.csv | 9192 satir | 2025-05-17 00:00:00+00:00 -> 2026-06-03 23:00:00+00:00
+  sayisal sutunlar (12): ['ghi_p0_cork', 'ghi_p1_cork', 'ghi_p0_wexford', 'ghi_p1_wexford', 'ghi_p0_dublin', 'ghi_p1_dublin', 'ghi_p0_midlands', 'ghi_p1_midlands', 'ghi_p0_galway', 'ghi_p1_galway', 'ghi_p0_limerick', 'ghi_p1_limerick']
+  pencere: 2025-11-24 -> 2025-12-15 (504 satir)
+
+  (A) previous_day1 (GUN-ONCESI tahmin) cekiliyor ...
+  (C) current run (AYNI GUN tahmini) cekiliyor ...
+  (B) archive / ERA5 (REANALIZ) cekiliyor ...
+
+==============================================================================
+SUTUN BAZINDA KARSILASTIRMA   (corr / MAE W/m2)
+==============================================================================
+  CSV sutunu               nokta          A gun-oncesi        C ayni gun        B reanaliz
+  ghi_p0_cork              cork        0.9282 /    7.7   1.0000 /    0.0   0.9359 /    7.3
+  ghi_p1_cork              cork        1.0000 /    0.0   0.9282 /    7.7   0.9227 /    8.0
+  ghi_p0_wexford           wexford     0.9387 /    6.4   1.0000 /    0.0   0.9512 /    7.0
+  ghi_p1_wexford           wexford     1.0000 /    0.0   0.9387 /    6.4   0.9395 /    7.2
+  ghi_p0_dublin            dublin      0.9620 /    4.6   1.0000 /    0.0   0.9576 /    6.1
+  ghi_p1_dublin            dublin      1.0000 /    0.0   0.9620 /    4.6   0.9408 /    7.0
+  ghi_p0_midlands          midlands    0.9323 /    5.8   1.0000 /    0.0   0.9105 /    7.1
+  ghi_p1_midlands          midlands    1.0000 /    0.0   0.9323 /    5.8   0.9184 /    6.9
+  ghi_p0_galway            galway      0.9102 /    6.9   1.0000 /    0.0   0.9054 /    7.1
+  ghi_p1_galway            galway      1.0000 /    0.0   0.9102 /    6.9   0.9126 /    7.2
+  ghi_p0_limerick          limerick    0.9023 /    7.7   1.0000 /    0.0   0.9173 /    7.3
+  ghi_p1_limerick          limerick    1.0000 /    0.0   0.9023 /    7.7   0.9369 /    6.6
+
+==============================================================================
+HUKUM
+==============================================================================
+  ghi_p0_cork              -> AYNI GUN TAHMINI   (corr 1.0000, yapisiyor)
+  ghi_p1_cork              -> GUN-ONCESI TAHMIN  (corr 1.0000, yapisiyor)
+  ghi_p0_wexford           -> AYNI GUN TAHMINI   (corr 1.0000, yapisiyor)
+  ghi_p1_wexford           -> GUN-ONCESI TAHMIN  (corr 1.0000, yapisiyor)
+  ghi_p0_dublin            -> AYNI GUN TAHMINI   (corr 1.0000, yapisiyor)
+  ghi_p1_dublin            -> GUN-ONCESI TAHMIN  (corr 1.0000, yapisiyor)
+  ghi_p0_midlands          -> AYNI GUN TAHMINI   (corr 1.0000, yapisiyor)
+  ghi_p1_midlands          -> GUN-ONCESI TAHMIN  (corr 1.0000, yapisiyor)
+  ghi_p0_galway            -> AYNI GUN TAHMINI   (corr 1.0000, yapisiyor)
+  ghi_p1_galway            -> GUN-ONCESI TAHMIN  (corr 1.0000, yapisiyor)
+  ghi_p0_limerick          -> AYNI GUN TAHMINI   (corr 1.0000, yapisiyor)
+  ghi_p1_limerick          -> GUN-ONCESI TAHMIN  (corr 1.0000, yapisiyor)
+
+  [S2] Tahmincinin kullandigi sutun koddan cikarilamadi.
+  Yukaridaki tabloya bak; hangi sutunun kullanildigini soyle.
+  HUKUM ancak o zaman verilir.

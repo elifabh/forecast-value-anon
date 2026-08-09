@@ -1,0 +1,51 @@
+==========================================================================
+ADIM 6 - MEVSIM KONTROLU (leave-block-out)
+==========================================================================
+  tahminci fit : 2400:13800   (degerlendirme blo�u DISLANDI)
+  degerlendirme: 0:2400  (2400 adim)
+  kontrolcu    : diag_mpc_forecastvolt mantigi | w_econ=1.0
+  ort solar (degerlendirme): 0.592 | (test blogu): 0.864
+==========================================================================
+
+  tahminci MAE bu blokta: naive 0.2404 | NWP 0.1388 | alpha 0.577
+
+  --- naive kosuluyor...
+      naive: 500/2400
+      naive: 1000/2400
+      naive: 1500/2400
+      naive: 2000/2400
+      naive: ihlal 5.38% | kar 11247.4 EUR
+
+  --- oracle kosuluyor...
+      oracle: 500/2400
+      oracle: 1000/2400
+      oracle: 1500/2400
+      oracle: 2000/2400
+      oracle: ihlal 2.08% | kar 12413.9 EUR
+
+  --- NWP kosuluyor...
+      NWP: 500/2400
+      NWP: 1000/2400
+      NWP: 1500/2400
+      NWP: 2000/2400
+      NWP: ihlal 2.38% | kar 12798.4 EUR
+
+==========================================================================
+SONUC - degerlendirme blo�u 0:2400
+==========================================================================
+                           ihlal%   kar(EUR)
+  Fair MPC + naive           5.38      11247
+  Fair MPC + NWP             2.38      12798
+  Fair MPC + oracle          2.08      12414   [referans]
+
+  ihlal degisimi : -3.00 puan   | bosluk kapanmasi: 91.1%
+  kar degisimi   : +1551 EUR
+
+  TEST blo�u (bahar 2026) referansi: ihlal -1.48 puan | kar +567 EUR | kapanma %69.2
+
+  ON-KAYITLI HUKUM:
+    (1) NWP ihlali dusuruyor mu : EVET
+    (2) NWP kari artiriyor mu   : EVET
+    -> DESEN TEKRARLANDI. Bulgu mevsime bagli degil; iki mevsimde de
+       iyi tahmin hem guvenligi hem kari artiriyor (takas yok).
+

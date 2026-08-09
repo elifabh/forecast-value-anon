@@ -1,0 +1,58 @@
+==========================================================================
+IZOLASYON - EKONOMIK AGIRLIK  (tek dugme: opf_expert.W_COST)
+==========================================================================
+mpc2_test import ediliyor...
+
+KANIT (1) gercek solar site-tepesi: 1.5000  (hedef 1.50)
+KANIT (2) naive fc/gercek orani: 0.986
+KANIT (3) NWP   fc/gercek orani: 1.000
+  -> uc kanit da tuttu.
+
+TEK DEGISKEN: opf_expert.W_COST  0.001 -> 1
+SABIT KALAN: ufuk = her adim tam runpp | solar = iki bara 1.5+1.5
+             safe layer = SafeLayer2 | dilim 13800:16229
+
+--- naive1 kosuluyor  (1 batarya, W_COST=1, fc=naive)
+    naive1: 400/2429  (9 dk, kalan ~47 dk)
+    naive1: 800/2429  (19 dk, kalan ~40 dk)
+    naive1: 1200/2429  (28 dk, kalan ~29 dk)
+    naive1: 1600/2429  (35 dk, kalan ~18 dk)
+    naive1: 2000/2429  (43 dk, kalan ~9 dk)
+    naive1: 2400/2429  (50 dk, kalan ~1 dk)
+    yazildi: gg2\data\mpc2_ev_naive1_w1.npz  (51 dk)
+    ihlal 7.70% (187 adet: 187 asiri, 0 dusuk) | kar 10591 EUR | dolu 89.3%
+
+--- nwp1 kosuluyor  (1 batarya, W_COST=1, fc=nwp)
+    nwp1: 400/2429  (7 dk, kalan ~38 dk)
+    nwp1: 800/2429  (15 dk, kalan ~31 dk)
+    nwp1: 1200/2429  (22 dk, kalan ~23 dk)
+    nwp1: 1600/2429  (30 dk, kalan ~15 dk)
+    nwp1: 2000/2429  (37 dk, kalan ~8 dk)
+    nwp1: 2400/2429  (45 dk, kalan ~1 dk)
+    yazildi: gg2\data\mpc2_ev_nwp1_w1.npz  (45 dk)
+    ihlal 6.42% (156 adet: 156 asiri, 0 dusuk) | kar 11207 EUR | dolu 88.5%
+
+==========================================================================
+SONUC - 1 batarya, W_COST = 1
+==========================================================================
+  kol          ihlal%   kar(EUR)       adet
+  naive1         7.70      10591        187
+  nwp1           6.42      11207        156
+
+  TAHMIN ETKISI (naive - NWP), gunluk blok bootstrap 10.000:
+    ihlal : +1.25 +/- 0.43 puan  (2.9 SE)
+    kar   : -620 +/- 862 EUR    (0.7 SE)
+
+  REFERANS (ayni kol cifti, W_COST=1e-3):
+    ihlal : +0.70 +/- 0.45 puan  (1.6 SE)
+    ana boru hatti (w_econ=1.0, tek bara solar, ldf ufuk): +1.54 +/- 0.72 (2.1 SE)
+
+  ON-KAYITLI HUKUM:
+    2.9 SE >= 2 -> EKONOMIK AGIRLIK ACIKLIYOR.
+    Dusuk W_COST'ta kontrolcu zaten voltaj-baskin davraniyor;
+    tahminin katabilecegi bilgi orada kisitli. Kapsam notu (2.4)
+    olculmus cevapla degistirilir.
+
+  NOT: ihlal SEVIYELERI w_econ ile degisir; seviye kiyasi YAPILMAZ.
+  Ilgilenilen tek sey naive - NWP FARKI ve SE'sidir.
+

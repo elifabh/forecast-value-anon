@@ -1,0 +1,54 @@
+====================================================================================
+Z18 - SEKIZ KAYDIRMA, TAM TABLO
+====================================================================================
+  CIPA naive-NWP = +1.54 +/- 0.72  -> GECTI
+
+  kol       alpha  tepe hata   ihlal %     kar EUR
+  ------------------------------------------------
+  NWP       0.799    -0.0527      9.80     10248.0
+  p1        1.161    -0.0541      9.96      9724.2
+  p2        1.287    -0.0684     10.42      9612.8
+  p3        1.285    -0.0798     10.21      9971.9
+  p4        1.349    -0.0934     10.37      9664.3
+  p5        1.324    -0.1202     10.21      9646.4
+  p7        1.461    -0.1845     11.16      9496.0
+  p14       1.291    -0.3010     11.77      9600.8
+  p21       1.636    -0.4127     12.39      9598.2
+  naive     1.000    -0.0330     11.28      9681.4
+
+====================================================================================
+HER PLASEBO vs GERCEK NWP   /   vs NAIVE
+====================================================================================
+  kol          -NWP     SE    kat hukum             -naive     SE    kat hukum
+  ------------------------------------------------------------------------------
+  p1          +0.21   0.36    0.6 cozulmuyor         -1.33   0.48    2.8 naive'den iyi
+  p2          +0.66   0.69    1.0 cozulmuyor         -0.87   0.38    2.3 naive'den iyi
+  p3          +0.45   0.39    1.2 cozulmuyor         -1.08   0.67    1.6 cozulmuyor
+  p4          +0.62   0.39    1.6 cozulmuyor         -0.91   0.73    1.3 cozulmuyor
+  p5          +0.46   0.40    1.2 cozulmuyor         -1.08   0.76    1.4 cozulmuyor
+  p7          +1.42   0.60    2.4 NWP'den kotu       -0.12   0.75    0.2 cozulmuyor
+  p14         +2.04   0.76    2.7 NWP'den kotu       +0.50   0.49    1.0 cozulmuyor
+  p21         +2.66   0.76    3.5 NWP'den kotu       +1.13   0.61    1.8 cozulmuyor
+
+====================================================================================
+ON-KAYITLI HUKUM
+====================================================================================
+  ANA SORU: plac1 (1 gun kaydirma) gercek NWP'den ayrisiyor mu?
+    plac1 - NWP = +0.21 +/- 0.36  (0.6 SE)
+    -> HUKUM (2): yanlis havali tahmin gercek tahminden AYIRT
+       EDILEMIYOR. CIDDI. Sayilar dogru ama 'gun-oncesi hava
+       bilgisinin degeri' manseti bu olcumu TASIMIYOR.
+       Manset DEGISIR. Gizlenmez.
+
+  EK: plac1 naive'den olculebilir sekilde iyi mi?
+    plac1 - naive = -1.33 +/- 0.48  (2.8 SE)
+    -> HUKUM (3): EVET. Tahminin gunluk SEKLI, hava iceriginden
+       bagimsiz olarak deger tasiyor. Bu kendi basina bir bulgudur.
+
+  KISA (1-5 gun) ihlal araligi : 9.96 - 10.42
+  UZUN (7-21 gun) ihlal araligi: 11.16 - 12.39
+  UZUN kaydirmalarin TEPE hatasi buyuyor (7g -0.18, 14g -0.30, 21g -0.41)
+  -> Uzun kaydirmalar sadece 'yanlis hava' degil, 'yanlis mevsimsel
+     seviye' de tasiyor. Plasebo merdiveni IKI seyi karistiriyor.
+     Bu ayrim makalede YAZILIR.
+

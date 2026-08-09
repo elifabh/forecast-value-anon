@@ -1,0 +1,70 @@
+
+==============================================================================
+0. KUNYE
+==============================================================================
+pandapower 3.4.0 | numpy 2.3.5 | python 3.13.5
+numba=True | k*=2.859375 | termal sinir 100.0%
+trafo idx 142 (25.0 MVA) | hat 109 | MV bara 108
+
+==============================================================================
+1. TABAN - BATARYA SIFIRDA (kol bagimsiz)
+==============================================================================
+    800/2429 (kalan ~0.8 dk)
+    1600/2429 (kalan ~0.4 dk)
+    2400/2429 (kalan ~0.0 dk)
+  bitti: 76 s
+  trafo : maks 102.4% | >100% adim 4 (0.16%)
+      bunlarin 4'i ITHALAT yonunde (p_hv >= 0)
+  hat   : maks 95.0% | >100% adim 0
+
+==============================================================================
+2. KOLLAR - GERCEK BATARYA SEVKI ILE
+==============================================================================
+  naive   trafo maks  102.4% | hat maks   95.0% | cipa |dV| 0.00e+00 | 77 s
+  nwp     trafo maks  102.4% | hat maks   95.0% | cipa |dV| 0.00e+00 | 78 s
+  oracle  trafo maks  102.4% | hat maks   95.0% | cipa |dV| 0.00e+00 | 74 s
+
+==============================================================================
+3. CIPA C11
+==============================================================================
+  naive   max |Vmax_yeniden - mx_yorunge| = 0.000e+00
+  nwp     max |Vmax_yeniden - mx_yorunge| = 0.000e+00
+  oracle  max |Vmax_yeniden - mx_yorunge| = 0.000e+00
+  -> C11 GECTI
+
+==============================================================================
+4. ASIM AYRISTIRMASI
+==============================================================================
+ONCEDEN VAR  = batarya=0'da da >100%   (IS 1b'de beyan edildi)
+BATARYA EKLI = batarya=0'da <=100%, batarya ile >100%
+
+kol      | TRAFO                        | HATLAR
+         | maks%     onceden   EKLI     | maks%     onceden   EKLI
+naive    | 102.4     3         0        | 95.0      0         0
+nwp      | 102.4     3         0        | 95.0      0         0
+oracle   | 102.4     3         0        | 95.0      0         0
+
+BATARYA EKLI adimlarda ne oluyor (naive kolu, ilk 5):
+   YOK - batarya hicbir adimda yeni termal asim yaratmadi.
+
+==============================================================================
+5. HUKUM
+==============================================================================
+BATARYA YENI TERMAL ASIM YARATMIYOR.
+
+Makaleye girecek cumle:
+  The storage dispatch adds no thermal violations beyond those
+  already present with storage idle. The transformer exceeds its
+  rating in the import direction at high demand even with no solar
+  and no storage, because a German feeder's load is modulated by an
+  Irish system-load shape; the hosting criterion is therefore
+  applied to the export direction only.
+
+EK BILGI - ithalat/ihracat ayrimi (naive kolu):
+  ihracat adimi 534 | trafo maks 99.4%
+  ithalat adimi 1895 | trafo maks 102.4%
+
+yazildi: <repo>\gg2\data\ob11_thermal.npz
+C11 GECTI
+
+BITTI.

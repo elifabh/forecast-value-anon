@@ -1,0 +1,57 @@
+==========================================================================
+IKI-BATARYA ADIL-BILGI (gru) KOSUMU
+==========================================================================
+mpc2_test import ediliyor (veri+sebeke kurulumu, ~10 sn)...
+UYARI: import sirasinda 'calisiyor...' satirlari akmaya baslarsa
+mpc2_test.py'nin for dongusu modul seviyesindedir -> Ctrl+C ile durdur,
+o donguyu if __name__=='__main__': altina tasi, tekrar dene.
+
+
+import tamam. Kosumlar basliyor.
+
+KONTROLCU KUNYESI:
+  script            : mpc2_test.run (birebir import)
+  voltaj penceresi  : runpp, tahminli girdiyle (gru modda)
+  solar tahmini     : forecast_matrix (daily-naive) - ADIL
+  SOLAR_PEAK        : 1.25
+  dilim             : 13800:16229
+
+ON-KAYIT REFERANSLARI (devirden):
+  perfect-koordineli: ~%0.49 (kusurlu test, kiyas icin)
+  tek-batarya fair MPC (solar 3.0): %11.28 - AMA solar farkli, KIYASLANMAZ
+
+--- gru-koordineli kosuluyor...
+    400/2429 ...
+    800/2429 ...
+    1200/2429 ...
+    1600/2429 ...
+    2000/2429 ...
+    2400/2429 ...
+    gru-koordineli: ihlal 0.41% | adet 10 | doygun 10 | sure 49 dk
+
+--- gru-bagimsiz kosuluyor...
+    400/2429 ...
+    800/2429 ...
+    1200/2429 ...
+    1600/2429 ...
+    2000/2429 ...
+    2400/2429 ...
+    gru-bagimsiz: ihlal 0.66% | adet 16 | doygun 16 | sure 53 dk
+
+==========================================================================
+SONUC
+==========================================================================
+               kosul   ihlal%   adet  doygun
+      gru-koordineli     0.41     10      10
+        gru-bagimsiz     0.66     16      16
+  perfect-koord (ref)    ~0.49
+
+ON-KAYITLI HUKUM (kosumdan once <author> onayladi):
+  gru-koordineli %0.41 < %2 -> adil bilgide bile MPC koordinasyonu
+  cozuyor. Multi-agent kapisi KAPALI (bu solar seviyesinde, 1.25).
+
+  koordineli-bagimsiz farki: 0.25 puan -> koordinasyonun kendisi ONEMSIZ (<0.5)
+
+NOT: Bu sonuc SOLAR_PEAK=1.25 kosulundadir; tek-batarya deneyleriyle
+dogrudan kiyaslanamaz (kunye farki). Rapora bu sinirla yazilir.
+

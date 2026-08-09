@@ -1,0 +1,39 @@
+==========================================================================
+FARK-FARKI (DiD) - ekonomik agirlik tahmin etkisini degistiriyor mu?
+==========================================================================
+  yuklendi naive_w0   gg2/data/mpc2_ev_naive1.npz            ihlal 6.63%  kar 8552 EUR
+  yuklendi nwp_w0     gg2/data/mpc2_ev_nwp1.npz              ihlal 5.93%  kar 8993 EUR
+  yuklendi naive_w1   gg2/data/mpc2_ev_naive1_w1.npz         ihlal 7.70%  kar 10591 EUR
+  yuklendi nwp_w1     gg2/data/mpc2_ev_nwp1_w1.npz           ihlal 6.42%  kar 11207 EUR
+
+  2429 adim -> 50 tam gun (son 29 adim bloklama disi)
+
+==========================================================================
+TAHMIN ETKISI (naive - NWP), ihlal puani
+==========================================================================
+  w_econ = 1e-3   +0.70 +/- 0.45 puan  (1.6 SE)
+  w_econ = 1.0    +1.25 +/- 0.43 puan  (2.9 SE)
+  w_econ = 1.0    +1.54 +/- 0.72 puan  (2.1 SE)   [ana boru hatti, referans]
+
+==========================================================================
+FARK-FARKI  DiD = etki(w=1.0) - etki(w=1e-3)
+==========================================================================
+  ihlal : +0.55 +/- 0.33 puan  (1.6 SE)
+  kar   : -172 +/- 573 EUR    (0.3 SE)
+
+  (bagimsiz varsayimla kaba ust sinir SE = 0.62; eslestirme bunu kucultur)
+
+==========================================================================
+ON-KAYITLI HUKUM
+==========================================================================
+  1.6 SE < 2 -> IKI ETKI BIRBIRINDEN AYIRT EDILEMIYOR.
+  Yon hipotezle tutarli (w=1.0'da etki daha buyuk ve cozuluyor),
+  ama BUYUKLUK FARKI KANITLANMADI.
+  Makalede iki etki yan yana raporlanir ve izolasyonun sonucsuz
+  kaldigi acikca yazilir. 'Ekonomik agirlik acikliyor' DENMEZ.
+
+  Her iki durumda da soylenebilecek OLCULMUS cumle:
+  Ana boru hattinin disinda, ekonomik agirlik esitlendiginde tahmin
+  etkisi yeniden cozuluyor (+1.25 +/- 0.43 puan, 2.9 SE) ve ana
+  boru hattinin buyuklugu (+1.54) ile tutarli.
+

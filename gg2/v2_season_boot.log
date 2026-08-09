@@ -1,0 +1,57 @@
+====================================================================================
+V2 - YAZ BLOGU YORUNGE + BOOTSTRAP
+====================================================================================
+  degerlendirme 0:2400 | tahminci fit 2400:13800 | w_econ=1.0
+
+  tahminci kuruluyor (gg2_nwp_season.build_nwp) ...
+  MAE naive 0.2404 | NWP 0.1388 | alpha 0.577  (cipa: 0.2404 / 0.1388 / 0.577)
+  -> tahminci cipasi GECTI
+
+====================================================================================
+KOSUM + SEVIYE CIPASI
+====================================================================================
+  --- naive kosuluyor ...
+      naive: 500/2400
+      naive: 1000/2400
+      naive: 1500/2400
+      naive: 2000/2400
+      ihlal 5.38% (cipa 5.38, fark 0.005) | kar 11247.4 (cipa 11247.4, fark 0.0) -> GECTI
+  --- oracle kosuluyor ...
+      oracle: 500/2400
+      oracle: 1000/2400
+      oracle: 1500/2400
+      oracle: 2000/2400
+      ihlal 2.08% (cipa 2.08, fark 0.003) | kar 12413.9 (cipa 12413.9, fark 0.0) -> GECTI
+  --- NWP kosuluyor ...
+      NWP: 500/2400
+      NWP: 1000/2400
+      NWP: 1500/2400
+      NWP: 2000/2400
+      ihlal 2.38% (cipa 2.38, fark 0.005) | kar 12798.4 (cipa 12798.4, fark 0.0) -> GECTI
+
+====================================================================================
+YAZ BLOGU - ESLESTIRILMIS BOOTSTRAP (50 gun, 10000 tekrar)
+====================================================================================
+  karsilastirma         ort      SD SD kat    %95 yuzdelik CI   carpik    P(<=0)
+  naive-NWP           +2.99    0.90    3.3  [ +1.37,  +4.88]     0.33     0.000  SIFIRI DISLIYOR
+  naive-oracle        +3.28    0.85    3.8  [ +1.75,  +5.08]     0.32     0.000  SIFIRI DISLIYOR
+  NWP-oracle          +0.30    0.33    0.9  [ -0.38,  +0.92]    -0.10     0.191  sifiri iceriyor
+
+  kar farklari (EUR) - HUKUM VERILMEZ, sadece aralik:
+  naive-NWP           -1562    1293  [   -4142,     +879]  P(<=0)=0.887  sifiri iceriyor
+  naive-oracle        -1169    1518  [   -4172,    +1735]  P(<=0)=0.775  sifiri iceriyor
+  NWP-oracle           +393     680  [    -882,    +1759]  P(<=0)=0.286  sifiri iceriyor
+
+====================================================================================
+ON-KAYITLI HUKUM
+====================================================================================
+  yaz  naive-NWP = +2.99 puan, %95 CI [+1.37, +4.88], P(<=0)=0.000
+  test naive-bm  = +1.54 puan, %95 CI [+0.29, +3.12], P(<=0)=0.005
+
+  -> YAZ REPLIKASYONU HATA CUBUGUYLA AYAKTA.
+     Bulgu iki blokta da olculdu; genelleme kaniti KULLANILABILIR.
+
+  NOT: kar icin hukum VERILMEDI. DEVIR 5.9 isaret-testini dusurdu;
+  'kar artti' ASLA yazilmaz. gg2_nwp_season.py'nin bastigi
+  '(2) NWP kari artiriyor mu: EVET' satiri makaleye GIRMEZ.
+

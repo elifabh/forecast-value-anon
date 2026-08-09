@@ -1,0 +1,58 @@
+==========================================================================
+Z14 ADIM 1 - SEED BASINA NWP TAHMIN MATRISI
+==========================================================================
+  seed'ler: 42, 1, 7
+  SP=3.0 SPLIT=13800 CAP_WIN=1440 LAG=48  (gg2_nwp_build_fc'den okundu)
+
+  referans: gg2/data/nwp_solar_fc_capnorm.npz | model=lgbm | shape=(16230, 48) | a_mean=0.799
+  joint 16230 adim | K=48 | test dilimi 13800:16229
+  ozellik matrisi: (16230, 14)
+
+==========================================================================
+EGITIM (fit 0:13800, model=lgbm, model SECIMI YAPILMIYOR)
+==========================================================================
+  seed 42   MAE 0.1801 | alpha 0.799 | alpha_kuyruk 0.926
+  seed 1    MAE 0.1761 | alpha 0.781 | alpha_kuyruk 0.907
+  seed 7    MAE 0.1794 | alpha 0.795 | alpha_kuyruk 0.926
+
+==========================================================================
+CIPA A - seed 42 matrisi diskteki referansi yeniden uretiyor mu?
+==========================================================================
+  max mutlak fark = 0.000e+00   (tolerans 1e-04)
+  -> GECTI
+
+==========================================================================
+CIPA B - alpha'lar Z10 log'undaki degerleri uretiyor mu?
+==========================================================================
+  seed 42   beklenen 0.799 | olculen 0.799 | fark -0.0002  -> OK
+  seed 1    beklenen 0.781 | olculen 0.781 | fark -0.0002  -> OK
+  seed 7    beklenen 0.795 | olculen 0.795 | fark +0.0005  -> OK
+  -> GECTI
+
+==========================================================================
+YAZIM (seed 42 ATLANIR - zaten var, uzerine yazilmaz)
+==========================================================================
+  seed 42 -> atlandi (gg2/data/nwp_solar_fc_capnorm.npz zaten var)
+  seed 1   -> yazildi: gg2\data\nwp_solar_fc_capnorm_s1.npz
+  seed 7   -> yazildi: gg2\data\nwp_solar_fc_capnorm_s7.npz
+
+==========================================================================
+ADIM 2 - MPC KOSUMU (bu script kosmaz, sen kosarsin)
+==========================================================================
+  Seed 42 kolu ZATEN VAR: gg2/nwp_fair_traj_nwp.npz (%9.80 / 10248 EUR)
+  Kalan iki kol (SIRAYLA, her biri saatler surebilir, --resume var):
+
+  python gg2/gg2_nwp_mpc_fair.py \
+      --nwp gg2/data/nwp_solar_fc_capnorm_s1.npz \
+      --out gg2/nwp_fair_s1.npz 2>&1 | tee gg2/nwp_fair_s1.log
+
+  python gg2/gg2_nwp_mpc_fair.py \
+      --nwp gg2/data/nwp_solar_fc_capnorm_s7.npz \
+      --out gg2/nwp_fair_s7.npz 2>&1 | tee gg2/nwp_fair_s7.log
+
+  Kesilirse ayni komuta --resume ekle.
+  Iki kosum bitince uc ihlal orani karsilastirilir; hukum yukaridaki
+  on-kayitta (0.72 puan esigi) yazili.
+
+  yazilan dosyalar: gg2\data\nwp_solar_fc_capnorm_s1.npz, gg2\data\nwp_solar_fc_capnorm_s7.npz
+

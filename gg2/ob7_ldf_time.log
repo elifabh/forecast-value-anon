@@ -1,0 +1,69 @@
+
+==============================================================================
+0. KUNYE
+==============================================================================
+pandapower 3.4.0 | numpy 2.3.5 | python 3.13.5
+cvxpy 1.9.1 | numba=True
+ON-KAYIT esigi: RMSE_ob / RMSE_33 <= 2.0
+pencere 13800:16229 (2429 adim)
+
+==============================================================================
+1. CIPA L1 - build_rx/ldf_v case33bw'de orijinali uretiyor mu
+==============================================================================
+R33 (33, 33) | max|R33 - D.R| = 0.000e+00 | max|X33 - D.X| = 0.000e+00
+case33bw ldf_v karsilastirma: max|fark| = 0.000e+00 -> L1 GECTI
+
+==============================================================================
+2. mv_oberrhein LinDistFlow KURULUMU
+==============================================================================
+VM (16230, 108) | MV 108 | Rcol[BB] 0.009342 | P_MAX* 8.00 MW | CAP* 16.00 MWh
+R_ob (108, 108) | graf 108 dugum 107 kenar | Rcol[BB] kontrol: R[BB,BB]=0.009342 (npz 0.009342)
+LDF yuk ekseni: P toplam 20.2740 MW | Q toplam 4.1168 MVAr | sgen 93
+
+==============================================================================
+3. LDF FARK DOGRULUGU - IKI FIDER, AYNI TEST
+==============================================================================
+gercek fark  = VM[i+lag] - VM[i]        (AC, batarya=0, onceden hesapli)
+model farki  = ldf(i+lag) - ldf(i)
+
+ornek adim sayisi: 300
+lag    | case33bw RMSE / maks (pu)  | oberrhein RMSE / maks (pu) | oran
+1      |  4.731e-04 /  4.319e-03 |  8.054e-04 /  4.387e-03 | 1.70
+6      |  1.963e-03 /  1.451e-02 |  3.881e-03 /  1.534e-02 | 1.98
+12     |  3.548e-03 /  1.935e-02 |  5.737e-03 /  1.796e-02 | 1.62
+24     |  4.737e-03 /  2.133e-02 |  6.296e-03 /  1.425e-02 | 1.33
+47     |  1.398e-03 /  9.880e-03 |  1.923e-03 /  1.244e-02 | 1.38
+
+lag ortalamasi: case33bw 2.424e-03 | oberrhein 3.728e-03 | ORAN 1.54
+HUKUM: GECTI - ikinci fiderde olculebilir sekilde daha kotu DEGIL (esik 2.0)
+
+==============================================================================
+4. CIPA L2 - mpc_ob.solve_window == mpc_econ_voltage_pareto.solve_window
+==============================================================================
+18 pencere | max |p_plan farki| = 0.000e+00 -> L2 GECTI
+
+==============================================================================
+5. SURE OLCUMU
+==============================================================================
+pencere kurulumu : ort 0.001 s  maks 0.001 s
+QP cozumu (108 bara, H=48): ort 0.342 s  maks 0.446 s
+cozucu durumlari : ['optimal']
+safe layer       : ort 0.173 s  maks 0.387 s  (ort 6.0 runpp/adim)
+
+ADIM BASINA TOPLAM (tahmini): 0.516 s
+BIR KOL  (2429 adim)          : 20.9 dk
+UC KOL   (naive/NWP/oracle) : 62.7 dk  (1.04 saat)
+
+NOT: safe layer suresi ihlalli adimlara agirlikli ornekle olculdu
+(8 ihlalli + 7 rastgele). Gercek ortalama daha DUSUK olacaktir,
+cunku adimlarin 84.9%'i ihlalsiz ve tek runpp ile bitiyor.
+
+==============================================================================
+6. OZET
+==============================================================================
+CIPA L1/L2 : GECTI / GECTI
+LDF orani  : 1.54 (esik 2.0) -> GECTI
+uc kol suresi tahmini: 1.0 saat
+yazildi: <repo>\gg2\data\ob7_ldf.csv
+
+BITTI.

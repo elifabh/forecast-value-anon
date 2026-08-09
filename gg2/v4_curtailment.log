@@ -1,0 +1,53 @@
+====================================================================================
+V4 - KISILAN SOLAR ENERJI (test blogu)
+====================================================================================
+  pencere ilk 2400 adim | toplam solar uretimi 1030.3 MWh | HI=1.050
+
+  --- naive: 269 ihlal adimi
+      cipa adim 48: yorunge mx=1.051793 | yeniden 1.051793 | fark 0.00e+00 -> GECTI
+      50/269  (17 sn, kalan ~76 sn)
+      100/269  (37 sn, kalan ~62 sn)
+      150/269  (56 sn, kalan ~45 sn)
+      200/269  (75 sn, kalan ~26 sn)
+      250/269  (96 sn, kalan ~7 sn)
+      kisilan enerji 126.92 MWh  (toplam solar'in %12.319'u)
+      tam kisintinin bile yetmedigi adim: 0
+
+  --- NWP: 232 ihlal adimi
+      cipa adim 64: yorunge mx=1.075231 | yeniden 1.075231 | fark 0.00e+00 -> GECTI
+      50/232  (19 sn, kalan ~70 sn)
+      100/232  (39 sn, kalan ~52 sn)
+      150/232  (59 sn, kalan ~32 sn)
+      200/232  (79 sn, kalan ~13 sn)
+      kisilan enerji 119.44 MWh  (toplam solar'in %11.593'u)
+      tam kisintinin bile yetmedigi adim: 0
+
+  --- oracle: 217 ihlal adimi
+      cipa adim 58: yorunge mx=1.050235 | yeniden 1.050235 | fark 0.00e+00 -> GECTI
+      50/217  (20 sn, kalan ~67 sn)
+      100/217  (40 sn, kalan ~47 sn)
+      150/217  (60 sn, kalan ~27 sn)
+      200/217  (81 sn, kalan ~7 sn)
+      kisilan enerji 112.55 MWh  (toplam solar'in %10.924'u)
+      tam kisintinin bile yetmedigi adim: 0
+
+====================================================================================
+KISILAN ENERJI FARKLARI (MWh, 50 gun)
+====================================================================================
+  karsilastirma          ort       SD               %95 CI    P(<=0)
+  naive-NWP            +7.43     3.51  [   +1.54,   +15.24]     0.004  SIFIRI DISLIYOR
+  naive-oracle        +14.30     5.42  [   +6.27,   +26.72]     0.000  SIFIRI DISLIYOR
+  NWP-oracle           +6.87     2.71  [   +2.33,   +12.97]     0.000  SIFIRI DISLIYOR
+
+====================================================================================
+ON-KAYITLI HUKUM
+====================================================================================
+  naive kisinti 126.92 MWh | NWP kisinti 119.44 MWh | fark +7.43 MWh
+  %95 CI [+1.54, +15.24]  P(<=0)=0.004
+
+  -> YAZILABILIR: day-ahead forecast avoids 7.43 MWh of curtailment
+     over 50 days (95% CI [1.54, 15.24]), i.e. 0.721% of solar output.
+
+  SINIR: kisinti, ihlali gidermek icin GEREKEN miktardir; gercek bir
+  DSO'nun kisinti politikasi modellenmedi. Bu bir ust-sinir tahminidir.
+

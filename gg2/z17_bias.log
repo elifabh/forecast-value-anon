@@ -1,0 +1,55 @@
+==============================================================================
+Z17 - 3-GUNLUK PLASEBO ANOMALISININ MEKANIZMA TESTI
+==============================================================================
+  test blogu 13800:16229 | solar saat 10-16 UTC
+
+==============================================================================
+[1] GIRDI - tahminin solar-saat isaretli hatasi
+==============================================================================
+  pozitif yanlilik = FAZLA tahmin = koruyucu (hipotez)
+  kol        yanlilik   MAE(sol)  fazla tah.%    alpha
+  ------------------------------------------------------
+  NWP         -0.0026     0.4130         50.9    0.799
+  plac3       -0.0502     0.6034         51.1    1.285
+  plac7       -0.1561     0.7439         45.1    1.461
+  plac14      -0.2623     0.6084         39.8    1.291
+  plac21      -0.3885     0.7620         33.4    1.636
+  naive       -0.0265     0.5025         46.5    1.000
+
+  CIPA: NWP alpha 0.799 = 0.799  -> GECTI
+
+==============================================================================
+[2] DAVRANIS - solar saatlerde GERCEKLESEN SOC (yorungeden)
+==============================================================================
+  dusuk SOC = cok sarj boslugu = koruyucu (hipotez)
+  kol          SOC ort   SOC solar   dolu%(>5.5)     ihlal %
+  ----------------------------------------------------------
+  NWP            2.573       4.308          43.0        9.80
+  plac3          2.613       4.316          41.6       10.21
+  plac7          2.661       4.362          43.3       11.16
+  plac14         2.786       4.457          48.6       11.77
+  plac21         2.889       4.584          50.6       12.39
+  naive          2.656       4.421          48.0       11.28
+
+==============================================================================
+SIRALAMA TUTARLILIGI (Spearman rho, alti nokta - yon gostergesi)
+==============================================================================
+  yanlilik vs ihlal   rho = -0.829   (hipotez: NEGATIF)
+  yanlilik vs SOC     rho = -0.829   (hipotez: NEGATIF)
+  SOC vs ihlal        rho = +1.000   (hipotez: POZITIF)
+
+  UYARI: alti nokta ile rho'nun hata cubugu genistir.
+  rho KANIT DEGILDIR, yon gostergesidir. Karar asagida.
+
+==============================================================================
+ON-KAYITLI HUKUM - plac3 vs naive ikilisi
+==============================================================================
+  yanlilik farki (plac3 - naive) = -0.0237   plac3 DAHA AZ tahmin ediyor
+  solar SOC farki               = -0.1054   plac3 DAHA BOS
+  ihlal farki                   = -1.07 pp (plac3 daha az ihlal)
+
+  HUKUM (B): ZINCIR KOPUK. Mekanizma REDDEDILDI.
+    'Bilinmiyor' yazilir. ACIKLAMA UYDURULMAZ.
+    Ikinci test: 1,2,4,5 gun kaydirma -> 3 gun ozel mi,
+    yoksa kisa-kaydirma bolgesi sistematik olarak mi farkli.
+

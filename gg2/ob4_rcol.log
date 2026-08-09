@@ -1,0 +1,114 @@
+
+==============================================================================
+0. KUNYE
+==============================================================================
+pandapower 3.4.0 | numpy 2.3.5 | pandas 2.3.3 | python 3.13.5
+numba=True | k*=2.8594 | BB=147
+
+==============================================================================
+1. SERILER
+==============================================================================
+N=16230 | pencere 13800:16229 (2429 adim)
+A1 GECTI | A2 GECTI (ort 0.8642, tepe 3.7492)
+
+==============================================================================
+2. SEBEKE + TOPOLOJI
+==============================================================================
+bilesen 0: 109 bara | MV olcum kumesi: 108 | trafo 142 | hat 109
+S_base=1.000 MVA | Z_base(20kV)=400.0 ohm | BB=147 konum=37
+acik hat anahtari: 6  (bunlar graftan CIKARILIR - yoksa graf cevrimli)
+hat grafi: 108 dugum, 107 kenar, agac=True -> A6 GECTI
+
+==============================================================================
+3. CIPA A3 - STATIK ESLESME
+==============================================================================
+k=4.0 statik: vmax 1.08218 (bek 1.08218) | ihlal 38 (bek 38) -> GECTI
+
+==============================================================================
+4. VM_BASE ON-HESABI (batarya = 0, tum seri)
+==============================================================================
+16230 adim x 108 bara. Bu bolum uzun surer.
+    4000/16230  (kalan ~6.2 dk)
+    8000/16230  (kalan ~4.0 dk)
+    12000/16230  (kalan ~2.0 dk)
+    16000/16230  (kalan ~0.1 dk)
+  bitti: 453 s | yakinsamayan adim: 0
+
+==============================================================================
+5. CIPA A5 - ob3 SAYILARININ YENIDEN URETIMI
+==============================================================================
+ihlal sayisi : 367       (bek 367)
+asiri        : 15.1091%   (ob3 logunda %15.11 yaziyordu)
+vmax  4 hane : 1.0836     (bek 1.0836)   TAM: 1.08364997
+vmin  4 hane : 0.9656     (bek 0.9656)   TAM: 0.96559634
+A5 -> GECTI
+
+KARSILASTIRMA (gg2_ob5_a5diag.py, YANLIS k=2.8594): vmax 1.08365035 -> 4 hane 1.0837
+Bu degerler DEVIR'e TAM haliyle yazilacak.
+
+IHLALLI adimlarda vmax barasi 147 olan pay: 99.73%
+(IS 1c'deki %15.9 TUM adimlar uzerindeydi; bu KOSULLU paydir)
+
+==============================================================================
+6. Rcol IKI VARYANT
+==============================================================================
+varyant A (kok 319, sadece hatlar): Rcol[BB]=0.009342  maks=0.009342  ort=0.001836
+varyant B (kok 318, + trafo r)    : Rcol[BB]=0.009454  (her baraya +0.000113)
+trafo pu (S_base=1.0): r=0.000113  x=0.004479  -> r/Rcol[BB]=1.2%
+NOT: LinDistFlow'da batarya P enjekte eder, Q=0 -> magnitude'a birinci
+     mertebede SADECE R girer. x_t buraya girmez, bilgi icin yazildi.
+
+==============================================================================
+7. GERCEK dV/dP OLCUMU (AC)
+==============================================================================
+orneklem: 26 adim (stride 97) + 10 adim (en yuksek taban vmax)
+  stride  p=  -3.0 MW  n=26 | RMSE A 1.346e-03  B 1.338e-03 | gercek/LDF@BB ort 0.993 (min 0.852 maks 1.095)
+  stride  p=  -1.0 MW  n=26 | RMSE A 4.853e-04  B 4.581e-04 | gercek/LDF@BB ort 1.027 (min 0.879 maks 1.136)
+  stride  p=  +1.0 MW  n=26 | RMSE A 5.777e-04  B 5.289e-04 | gercek/LDF@BB ort 1.065 (min 0.907 maks 1.183)
+  stride  p=  +3.0 MW  n=26 | RMSE A 2.124e-03  B 1.948e-03 | gercek/LDF@BB ort 1.107 (min 0.937 maks 1.235)
+  stride  p= -20.0 MW  n=26 | RMSE A 1.961e-02  B 2.142e-02 | gercek/LDF@BB ort 0.779 (min 0.673 maks 0.848)
+  stride  p= -10.0 MW  n=26 | RMSE A 5.388e-03  B 5.827e-03 | gercek/LDF@BB ort 0.892 (min 0.770 maks 0.975)
+  stride  p= +10.0 MW  n=26 | RMSE A 1.521e-02  B 1.430e-02 | gercek/LDF@BB ort 1.303 (min 1.068 maks 1.501)
+  stride  p= +20.0 MW  n=14 | RMSE A 6.622e-02  B 6.436e-02 | gercek/LDF@BB ort 1.771 (min 1.404 maks 2.139)
+  topv    p=  -3.0 MW  n=10 | RMSE A 3.127e-03  B 3.439e-03 | gercek/LDF@BB ort 0.834 (min 0.828 maks 0.837)
+  topv    p=  -1.0 MW  n=10 | RMSE A 9.304e-04  B 1.035e-03 | gercek/LDF@BB ort 0.859 (min 0.853 maks 0.863)
+  topv    p=  +1.0 MW  n=10 | RMSE A 8.139e-04  B 9.193e-04 | gercek/LDF@BB ort 0.887 (min 0.881 maks 0.891)
+  topv    p=  +3.0 MW  n=10 | RMSE A 2.078e-03  B 2.396e-03 | gercek/LDF@BB ort 0.916 (min 0.910 maks 0.921)
+  topv    p= -20.0 MW  n=10 | RMSE A 3.725e-02  B 3.928e-02 | gercek/LDF@BB ort 0.657 (min 0.651 maks 0.661)
+  topv    p= -10.0 MW  n=10 | RMSE A 1.403e-02  B 1.506e-02 | gercek/LDF@BB ort 0.753 (min 0.748 maks 0.757)
+  topv    p= +10.0 MW  n=10 | RMSE A 2.903e-03  B 3.772e-03 | gercek/LDF@BB ort 1.041 (min 1.035 maks 1.047)
+  topv    p= +20.0 MW  n=10 | RMSE A 2.424e-02  B 2.275e-02 | gercek/LDF@BB ort 1.352 (min 1.343 maks 1.361)
+
+==============================================================================
+8. HUKUM - Rcol VARYANT SECIMI
+==============================================================================
+|p| <= 3 MW aralikta ortalama RMSE:  A 1.435e-03   B 1.508e-03   fark 7.253e-05
+VARYANT A daha dusuk RMSE -> A secildi.
+
+GENIS GUC ARALIGI (hukum icin DEGIL, IS 3 batarya boyutlandirmasi icin):
+  stride  p= -20.0 MW | RMSE A 1.961e-02 (en kotu adim 3.501e-02) | oran 0.779
+  stride  p= -10.0 MW | RMSE A 5.388e-03 (en kotu adim 1.285e-02) | oran 0.892
+  stride  p= +10.0 MW | RMSE A 1.521e-02 (en kotu adim 2.790e-02) | oran 1.303
+  stride  p= +20.0 MW | RMSE A 6.622e-02 (en kotu adim 1.022e-01) | oran 1.771
+  topv    p= -20.0 MW | RMSE A 3.725e-02 (en kotu adim 3.821e-02) | oran 0.657
+  topv    p= -10.0 MW | RMSE A 1.403e-02 (en kotu adim 1.448e-02) | oran 0.753
+  topv    p= +10.0 MW | RMSE A 2.903e-03 (en kotu adim 3.198e-03) | oran 1.041
+  topv    p= +20.0 MW | RMSE A 2.424e-02 (en kotu adim 2.517e-02) | oran 1.352
+
+Bu hata SAFE LAYER'i etkilemez (o gercek AC kosar), sadece PLANLAYICININ
+kalitesini etkiler. case33bw'de de ayni yapi vardi.
+
+==============================================================================
+9. KAYIT
+==============================================================================
+yazildi: <repo>\gg2\data\ob_base_vm.npz
+  vm (16230, 108) | Rcol (108,) (varyant A) | S_base 1.000 | mv_buses 108
+yazildi: <repo>\gg2\data\ob4_rcol.csv (16 satir)
+
+CIPA A1/A2/A3/A5/A6 : GECTI / GECTI / GECTI / GECTI / GECTI
+secilen Rcol varyanti: A
+
+UYARI (sonraki is): safe_layer.SafeLayer._vac tum sebekenin vm_pu.min/max'ini
+aliyor. mv_oberrhein'de bilesen 1 de sayilir. MASKE eklenmeden kullanilamaz.
+
+BITTI.

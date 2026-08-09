@@ -1,0 +1,25 @@
+======================================================================
+gg2_ob12_seasonfc.py - yaz blogu tahmin matrisi
+======================================================================
+
+[1/4] gg2_nwp_season import ediliyor (build_nwp aynen kullanilir)...
+      OK. SP=3.0 CAP_WIN=1440 LAG=48
+
+[2/4] Referans: gg2\data\nwp_solar_fc_capnorm.npz
+      solar (16230, 48) float32   split=13800
+
+[3/4] CIPA: build_nwp(fit0=0, fit1=13800) referansi uretmeli...
+      max |fark| = 0.000e+00   (esik 1e-06)
+      CIPA GECTI.
+
+[4/4] Yaz blogu matrisi: build_nwp(fit0=2400, fit1=13800)...
+      solar (16230, 48) float32
+      degerlendirme blogunda (0:2400) referanstan sapma:
+        max 1.3906  ort 0.1108
+      (sifira COK yakin cikarsa sizinti onlemi ISE YARAMAMIS demektir)
+
+      YAZILDI: gg2\data\nwp_solar_fc_season.npz
+
+======================================================================
+BITTI. Sonraki adim: ob8 kolunu bu matrisle 0:2400'de kosmak.
+======================================================================

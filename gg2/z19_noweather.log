@@ -1,0 +1,47 @@
+<repo>\.venv\Lib\site-packages\sklearn\utils\validation.py:2827: UserWarning: X does not have valid feature names, but LGBMRegressor was fitted with feature names
+  warnings.warn(
+<repo>\.venv\Lib\site-packages\sklearn\utils\validation.py:2827: UserWarning: X does not have valid feature names, but LGBMRegressor was fitted with feature names
+  warnings.warn(
+============================================================================
+Z19 - HIC HAVA BILGISI OLMAYAN TAHMINCI
+============================================================================
+  joint 16230 adim | K=48 | fit 0:13800 | seed 42
+  referans NWP alpha (diskten): 0.799
+
+  CIPA: diskteki NWP matrisinin alpha'si 0.799 (beklenen 0.799)
+  -> GECTI
+
+============================================================================
+EGITIM (GHI kolonu YOK)
+============================================================================
+  kol        ozellikler                               MAE    alpha   kuyruk
+  ------------------------------------------------------------------
+  cal        sin_h cos_h sin_d cos_d               0.3594    1.594    1.633
+  calcap     sin_h cos_h sin_d cos_d cap_est       0.3595    1.594    1.633
+  naive      dun tekrarlanir                            -    1.000    1.000
+  NWP        GHI 6 nokta + takvim + cap_est             -    0.799    0.926
+
+  SIZINTI KONTROLU: hava yoksa alpha > 1 olmali
+    cal      alpha 1.594  -> OK
+    calcap   alpha 1.594  -> OK
+
+============================================================================
+YAZIM
+============================================================================
+  cal      yazildi: gg2\data\nwp_solar_fc_cal.npz
+  calcap   yazildi: gg2\data\nwp_solar_fc_calcap.npz
+
+============================================================================
+SONRAKI ADIM - MPC (iki pencere, ~15 dk)
+============================================================================
+  python gg2/gg2_nwp_mpc_fair.py \
+      --nwp gg2/data/nwp_solar_fc_cal.npz \
+      --out gg2/nwp_fair_cal.npz 2>&1 | tee gg2/nwp_fair_cal.log
+
+  python gg2/gg2_nwp_mpc_fair.py \
+      --nwp gg2/data/nwp_solar_fc_calcap.npz \
+      --out gg2/nwp_fair_calcap.npz 2>&1 | tee gg2/nwp_fair_calcap.log
+
+  Kiyas noktalari: gercek NWP %9.80 | naive %11.28 | p1 %9.96
+  Hukum (A/B/C) bootstrap ile verilir, seviyeye bakilarak DEGIL.
+
