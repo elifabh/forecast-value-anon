@@ -1,0 +1,18 @@
+cff-version: 1.2.0
+message: 'If you use the code and experiments in this repository, please cite this software project.'
+type: software
+title: 'Forecast value for storage-based voltage management: code and experiments'
+authors:
+  - family-names: 'Abdul Halim'
+    given-names: 'Elif Gul'
+repository-code: 'https://github.com/elifabh/forecast-value-anon'
+abstract: >-
+  Research scripts and execution logs for comparisons of day-ahead persistence,
+  NWP-based solar forecasting, and solar-only perfect foresight in battery
+  dispatch for voltage management on distribution feeders.
+keywords:
+  - solar forecasting
+  - energy storage
+  - voltage control
+  - numerical weather prediction
+  - distribution networks
